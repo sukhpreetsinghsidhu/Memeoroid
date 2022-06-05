@@ -9,8 +9,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // for testing purposes, go right to the Gallery Activity from Main
-        var intent = Intent(this, GalleryActivity::class.java)
+        // for testing purposes, go right to the New Activity from Main
+        var intent = Intent(this, NewActivity::class.java)
         startActivity(intent)
     }
 }
