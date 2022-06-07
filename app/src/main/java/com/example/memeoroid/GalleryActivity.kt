@@ -62,12 +62,16 @@ class GalleryActivity : AppCompatActivity() {
 
         PrevGallary.setOnClickListener {
             startpoint -= limit
+            if(startpoint <0){
+                startpoint = 0
+            }
             loadData(startpoint, adapter)
         }
     }
 
     fun loadData(startpoint: Int, adapter: GalleryAdapter){
         var endpoint = startpoint+ limit
+
         if(endpoint > (templateList.size-1)){
             endpoint = templateList.size-1
         }
