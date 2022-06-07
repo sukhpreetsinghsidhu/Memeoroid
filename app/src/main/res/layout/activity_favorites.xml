@@ -58,13 +58,29 @@
         tools:itemCount="5"
         tools:listitem="@layout/meme_list_item">
     </androidx.recyclerview.widget.RecyclerView>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Load More"
-        android:id="@+id/LoadMore"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Previous"
+                    android:id="@+id/Prevous"
+                    android:layout_margin="10dp"
+                    android:visibility="gone"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Load More"
+                    android:id="@+id/LoadMore"
+                    android:layout_margin="10dp"
+                    />
 
-        />
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
     <TextView

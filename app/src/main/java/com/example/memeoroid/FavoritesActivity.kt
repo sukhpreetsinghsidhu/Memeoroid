@@ -101,6 +101,11 @@ class FavoritesActivity : AppCompatActivity() {
                     }else{
                         LoadMore.visibility = View.VISIBLE
                     }
+                    if(offset == 0 ){
+                        Prevous.visibility = View.GONE
+                    }else{
+                        Prevous.visibility = View.VISIBLE
+                    }
                 }
             }
         })
@@ -108,28 +113,40 @@ class FavoritesActivity : AppCompatActivity() {
         LoadMore.setOnClickListener {
             //Log.d("offset&Limit", "$offset, $limit")
             offset+=limit
-                // Log.d("offset&Limit 2", "$offset, $limit")
-            if(search){
-                var searchText = searchBar.text.toString()
-                vm.search(searchText, limit, offset)
-            }else{
-                vm.selectAllFavorites(limit,offset)
-            }
+            loadData()
+        }
+        Prevous.setOnClickListener {
+            offset -= limit
 
-            vm.allFavorites.observe(this){
-                getFavorites(it)
-                if(it.size <10){
-                    LoadMore.visibility = View.GONE
-                }else{
-                    LoadMore.visibility = View.VISIBLE
-                }
-            }
-
+            loadData()
         }
 
+    }
+fun loadData(){
+    // Log.d("offset&Limit 2", "$offset, $limit")
 
+    if(search){
+        var searchText = searchBar.text.toString()
+        vm.search(searchText, limit, offset)
+    }else{
+        vm.selectAllFavorites(limit,offset)
     }
 
+
+    vm.allFavorites.observe(this){
+        getFavorites(it)
+        if(it.size <10){
+            LoadMore.visibility = View.GONE
+        }else{
+            LoadMore.visibility = View.VISIBLE
+        }
+        if(offset == 0 ){
+            Prevous.visibility = View.GONE
+        }else{
+            Prevous.visibility = View.VISIBLE
+        }
+    }
+}
     // function used to refresh recycler view
     fun getFavorites(favoritesList: List<Meme>) {
         this.favoritesList.clear()
