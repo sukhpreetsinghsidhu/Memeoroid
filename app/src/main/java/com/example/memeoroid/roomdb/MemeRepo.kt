@@ -15,12 +15,12 @@ class MemeRepo(context: Context) {
     }
 
     // Read
-    fun selectAllFavorites() : LiveData<List<Meme>>? {
-        return db?.selectAllFavorites()
+    fun selectAllFavorites(limit: Int, offset: Int) : LiveData<List<Meme>>? {
+        return db?.selectAllFavorites(limit, offset)
     }
 
-    fun selectFavorite(key: Int): LiveData<Meme>? {
-        return db?.selectFavorite(key)
+    fun selectFavorite(key: Int, limit :Int, offset: Int): LiveData<Meme>? {
+        return db?.selectFavorite(key, limit , offset)
     }
 
     fun search(text: String) : LiveData<List<Meme>>? {

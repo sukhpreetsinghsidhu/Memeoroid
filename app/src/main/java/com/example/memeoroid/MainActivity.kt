@@ -10,7 +10,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // for testing purposes, go right to the New Activity from Main
-        var intent = Intent(this, NewActivity::class.java)
+        var intent = Intent(this, FavoritesActivity::class.java)
         startActivity(intent)
     }
 }

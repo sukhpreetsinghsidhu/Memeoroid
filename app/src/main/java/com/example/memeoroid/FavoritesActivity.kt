@@ -1,10 +1,13 @@
 package com.example.memeoroid
 
 import android.content.Intent
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memeoroid.roomdb.*
@@ -16,7 +19,8 @@ class FavoritesActivity : AppCompatActivity() {
     lateinit var vm: DbViewModel
     var favoritesList = ArrayList<Meme>()
     lateinit var adapter: ListAdapter
-
+    val limit = 10
+    var offset =0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
@@ -24,25 +28,34 @@ class FavoritesActivity : AppCompatActivity() {
         // initialize db viewmodel
         vm = DbViewModel(application)
 
-        /*
-        // tests for CRUD operations
-        vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
-        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
-        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
 
-        vm.updateFavorite(Meme(3, "Finding a new meme format", "Still using the Drake meme after 2 years", "Drake Hotline Bling"))
-        vm.deleteFavorite(Meme(1, "Top1", "Bottom1", "Drake Hotline Bling"))
-         */
+        // tests for CRUD operations
+//        vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
+//        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
+//        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
+// vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
+//        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
+//        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
+// vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
+//        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
+//        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
+// vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
+//        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
+//        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
+
+//        vm.updateFavorite(Meme(3, "Finding a new meme format", "Still using the Drake meme after 2 years", "Drake Hotline Bling"))
+//        vm.deleteFavorite(Meme(1, "Top1", "Bottom1", "Drake Hotline Bling"))
+
 
         // get all favorite memes
-        vm.allFavorites.observe(this, {
-                favoritesList -> getFavorites(favoritesList)
+        vm.allFavorites.observe(this) { favoritesList ->
+            getFavorites(favoritesList)
             if (favoritesList.isEmpty()) {
                 emptyListText.text = "LIST EMPTY"
             } else {
                 emptyListText.text = ""
             }
-        })
+        }
 
         // get reference to view to populate
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
@@ -68,20 +81,38 @@ class FavoritesActivity : AppCompatActivity() {
                 if (searchText != "") {
                     vm.search(searchText)
                 } else {
-                    vm.selectAllFavorites()
+                    vm.selectAllFavorites(10,0)
                 }
                 // necessary to update recycler view after search
-                vm.allFavorites.observe(this@FavoritesActivity, {
-                        favoritesList -> getFavorites(favoritesList)
+           // on search we will have to visibility gone for load more button.
+                vm.allFavorites.observe(this@FavoritesActivity) { favoritesList ->
+                    getFavorites(favoritesList)
                     if (favoritesList.isEmpty()) {
                         emptyListText.text = "LIST EMPTY"
                     } else {
                         emptyListText.text = ""
                     }
-                })
+                }
             }
         })
 
+        LoadMore.setOnClickListener {
+            //Log.d("offset&Limit", "$offset, $limit")
+            offset+=limit
+                // Log.d("offset&Limit 2", "$offset, $limit")
+            vm.selectAllFavorites(limit,offset)
+            vm.allFavorites.observe(this){
+                getFavorites(it)
+                if(it.size <10){
+                    LoadMore.visibility = View.GONE
+                }else{
+                    LoadMore.visibility = View.VISIBLE
+                }
+            }
+
+        }
+
+        
     }
 
     // function used to refresh recycler view
