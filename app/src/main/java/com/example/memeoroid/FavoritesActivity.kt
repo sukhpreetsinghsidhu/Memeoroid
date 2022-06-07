@@ -21,6 +21,7 @@ class FavoritesActivity : AppCompatActivity() {
     lateinit var adapter: ListAdapter
     val limit = 10
     var offset =0
+    var search =false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
@@ -79,9 +80,12 @@ class FavoritesActivity : AppCompatActivity() {
                 // if empty, get all favorite memes
                 // else, send text to the viewmodel
                 if (searchText != "") {
-                    vm.search(searchText)
+                    offset = 0
+                    vm.search(searchText, limit, offset)
+                    search =true
                 } else {
                     vm.selectAllFavorites(10,0)
+                    search =  false
                 }
                 // necessary to update recycler view after search
            // on search we will have to visibility gone for load more button.
@@ -92,6 +96,11 @@ class FavoritesActivity : AppCompatActivity() {
                     } else {
                         emptyListText.text = ""
                     }
+                    if(favoritesList.size <10){
+                        LoadMore.visibility = View.GONE
+                    }else{
+                        LoadMore.visibility = View.VISIBLE
+                    }
                 }
             }
         })
@@ -100,7 +109,13 @@ class FavoritesActivity : AppCompatActivity() {
             //Log.d("offset&Limit", "$offset, $limit")
             offset+=limit
                 // Log.d("offset&Limit 2", "$offset, $limit")
-            vm.selectAllFavorites(limit,offset)
+            if(search){
+                var searchText = searchBar.text.toString()
+                vm.search(searchText, limit, offset)
+            }else{
+                vm.selectAllFavorites(limit,offset)
+            }
+
             vm.allFavorites.observe(this){
                 getFavorites(it)
                 if(it.size <10){
@@ -112,7 +127,7 @@ class FavoritesActivity : AppCompatActivity() {
 
         }
 
-        
+
     }
 
     // function used to refresh recycler view

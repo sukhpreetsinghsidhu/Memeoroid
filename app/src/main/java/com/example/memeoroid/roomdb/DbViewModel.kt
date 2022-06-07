@@ -33,8 +33,8 @@ class DbViewModel(app: Application) : AndroidViewModel(app) {
         favoriteById = repo.selectFavorite(key, limit, offset )!!
     }
 
-    fun search(text: String) = viewModelScope.launch {
-        allFavorites = repo.search(text)!!
+    fun search(text: String, limit:Int, offset : Int) = viewModelScope.launch {
+        allFavorites = repo.search(text, limit, offset )!!
     }
 
     // Update

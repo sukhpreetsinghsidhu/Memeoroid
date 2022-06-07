@@ -23,8 +23,8 @@ class MemeRepo(context: Context) {
         return db?.selectFavorite(key, limit , offset)
     }
 
-    fun search(text: String) : LiveData<List<Meme>>? {
-        return db?.search("%" + text + "%")
+    fun search(text: String, limit:Int, offset : Int) : LiveData<List<Meme>>? {
+        return db?.search("%" + text + "%", limit, offset )
     }
 
     // Update
