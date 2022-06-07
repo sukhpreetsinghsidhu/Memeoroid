@@ -16,7 +16,7 @@ class DbViewModel(app: Application) : AndroidViewModel(app) {
 
     init {
         repo = MemeRepo(app)
-        allFavorites = repo.selectAllFavorites()!!
+        allFavorites = repo.selectAllFavorites(10,0)!!
     }
 
     // Create
@@ -25,16 +25,16 @@ class DbViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     // Read
-    fun selectAllFavorites() = viewModelScope.launch {
-        allFavorites = repo.selectAllFavorites()!!
+    fun selectAllFavorites(limit: Int,offset: Int) = viewModelScope.launch {
+        allFavorites = repo.selectAllFavorites(limit , offset )!!
     }
 
-    fun selectFavorite(key: Int) = viewModelScope.launch {
-        favoriteById = repo.selectFavorite(key)!!
+    fun selectFavorite(key: Int, limit:Int, offset:Int) = viewModelScope.launch {
+        favoriteById = repo.selectFavorite(key, limit, offset )!!
     }
 
-    fun search(text: String) = viewModelScope.launch {
-        allFavorites = repo.search(text)!!
+    fun search(text: String, limit:Int, offset : Int) = viewModelScope.launch {
+        allFavorites = repo.search(text, limit, offset )!!
     }
 
     // Update
