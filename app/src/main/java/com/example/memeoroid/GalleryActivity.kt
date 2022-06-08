@@ -2,6 +2,7 @@ package com.example.memeoroid
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memeoroid.retrofit.*
@@ -19,7 +20,9 @@ class GalleryActivity : AppCompatActivity() {
 
     lateinit var vm: ApiViewModel
     var templateList: List<MemeTemplate> = listOf<MemeTemplate>();
-
+    var startpoint = 0
+    val limit = 10
+//    var endpoint = startpoint+limit
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery)
@@ -37,9 +40,54 @@ class GalleryActivity : AppCompatActivity() {
         vm.getAllTemplates()
 
         vm.templateList.observe(this) {
-            adapter.setItems(it)
+            templateList = it
+            startpoint = 0
+            var endpoint = startpoint+ limit
+            if(endpoint > (templateList.size-1)){
+                endpoint = templateList.size-1
+            }
+            var buffer = templateList.subList(startpoint , startpoint+limit)
+            //templateList = it.subList(startpoint,startpoint+limit)
+            adapter.setItems(buffer)
+
+            //set load more visibility true
             //println(it)
         }
+        NextGallary.setOnClickListener {
+            startpoint += limit
 
+            loadData(startpoint, adapter)
+
+        }
+
+        PrevGallary.setOnClickListener {
+            startpoint -= limit
+            if(startpoint <0){
+                startpoint = 0
+            }
+            loadData(startpoint, adapter)
+        }
+    }
+
+    fun loadData(startpoint: Int, adapter: GalleryAdapter){
+        var endpoint = startpoint+ limit
+
+        if(endpoint > (templateList.size-1)){
+            endpoint = templateList.size-1
+        }
+
+        if(endpoint == templateList.size-1){
+            NextGallary.visibility = View.GONE
+            PrevGallary.visibility = View.VISIBLE
+        }else{
+            NextGallary.visibility = View.VISIBLE
+        }
+        if(startpoint > 0){
+            PrevGallary.visibility = View.VISIBLE
+        }else{
+            PrevGallary.visibility = View.GONE
+        }
+        var buffer = templateList.subList(startpoint , startpoint+limit)
+        adapter.setItems(buffer)
     }
 }
