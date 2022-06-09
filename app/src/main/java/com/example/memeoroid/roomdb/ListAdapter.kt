@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 
 // Adapter, which makes a view for each meme in the dataset
-class ListAdapter(private val favoriteList: List<Meme>): RecyclerView.Adapter<ViewHolder>() {
+class ListAdapter(private val favoriteList: MutableList<Meme>): RecyclerView.Adapter<ViewHolder>() { //changed to mutable list from list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // inflate
         val view = LayoutInflater.from(parent.context)
@@ -40,7 +40,7 @@ class ListAdapter(private val favoriteList: List<Meme>): RecyclerView.Adapter<Vi
     }
 //DAB CODE
      fun deleteSwipedFavorite(index: Int){
-        favoriteList.remove
+        favoriteList.removeAt(index)
         notifyDataSetChanged()
     }
 
