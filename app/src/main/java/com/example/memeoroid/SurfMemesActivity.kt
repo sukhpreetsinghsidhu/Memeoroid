@@ -39,7 +39,6 @@ class SurfMemesActivity : AppCompatActivity() {
             val chooser = Intent.createChooser(intent,"Share this meme using- ")
             startActivity(chooser)
         }
-
     }
 
     fun loadMeme(){
