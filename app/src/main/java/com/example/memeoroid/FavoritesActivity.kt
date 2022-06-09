@@ -78,7 +78,7 @@ class FavoritesActivity : AppCompatActivity() {
 
         val touchHelper = ItemTouchHelper(swipeDelete)
         touchHelper.attachToRecyclerView(recyclerView)
-
+//DAB CODE END
         //search bar functionality
         searchBar.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
