@@ -5,7 +5,7 @@ import android.graphics.Canvas
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class OnSwipeRight(context: Context): ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT){
+abstract class OnSwipeRight(context: Context): ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
 
     override fun onMove(
         recyclerView: RecyclerView,

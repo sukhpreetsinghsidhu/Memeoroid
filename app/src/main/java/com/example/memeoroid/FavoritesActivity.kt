@@ -67,17 +67,31 @@ class FavoritesActivity : AppCompatActivity() {
         adapter = ListAdapter(favoritesList)
         recyclerView.adapter = adapter
 //DAB CODE
-        val swipeDelete = object : OnSwipeTouchListener(this){
+        //LeftSwipe
+        val swipeDelete = object : OnSwipeLeft(this){
             override fun onSwiped(
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
-            ) {///need to create a remove function
+            ) {
                 adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
             }
         }
 
-        val touchHelper = ItemTouchHelper(swipeDelete)
-        touchHelper.attachToRecyclerView(recyclerView)
+        val toLeftTouchHelper = ItemTouchHelper(swipeDelete)
+        toLeftTouchHelper.attachToRecyclerView(recyclerView)
+
+        //RightSwipe
+        val swipeUpdate = object : OnSwipeRight(this){
+            override fun onSwiped(
+                viewHolder: RecyclerView.ViewHolder,
+                direction: Int
+            ) {
+                adapter.deleteSwipedFavorite(viewHolder.adapterPosition) //must change to update/edit, is currently delete
+            }
+        }
+
+        val toRightTouchHelper = ItemTouchHelper(swipeUpdate)
+        toRightTouchHelper.attachToRecyclerView(recyclerView)
 //DAB CODE END
         //search bar functionality
         searchBar.addTextChangedListener(object: TextWatcher {
