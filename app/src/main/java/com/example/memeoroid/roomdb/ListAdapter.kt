@@ -38,6 +38,11 @@ class ListAdapter(private val favoriteList: List<Meme>): RecyclerView.Adapter<Vi
         // size of the list/datasource
         return favoriteList.size
     }
+//DAB CODE
+    fun deleteFavorite(index: Int){
+
+    }
+
 }
 
 class ViewHolder(view: View): RecyclerView.ViewHolder(view) {

@@ -65,6 +65,15 @@ class FavoritesActivity : AppCompatActivity() {
         // create adapter with data source and assign adapter
         adapter = ListAdapter(favoritesList)
         recyclerView.adapter = adapter
+//DAB CODE
+        val swipeDelete = object : OnSwipeTouchListener(){
+            override fun onSwiped(
+                viewHolder: RecyclerView.ViewHolder,
+                direction: Int
+            ) {///need to create a remove function
+                adapter.deleteFavorite(viewHolder.adapterPosition)
+            }
+        }
 
         //search bar functionality
         searchBar.addTextChangedListener(object: TextWatcher {
