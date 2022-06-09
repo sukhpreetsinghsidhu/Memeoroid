@@ -8,6 +8,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memeoroid.roomdb.*
@@ -66,14 +67,17 @@ class FavoritesActivity : AppCompatActivity() {
         adapter = ListAdapter(favoritesList)
         recyclerView.adapter = adapter
 //DAB CODE
-        val swipeDelete = object : OnSwipeTouchListener(){
+        val swipeDelete = object : OnSwipeTouchListener(this){
             override fun onSwiped(
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
             ) {///need to create a remove function
-                adapter.deleteFavorite(viewHolder.adapterPosition)
+                adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
             }
         }
+
+        val touchHelper = ItemTouchHelper(swipeDelete)
+        touchHelper.attachToRecyclerView(recyclerView)
 
         //search bar functionality
         searchBar.addTextChangedListener(object: TextWatcher {

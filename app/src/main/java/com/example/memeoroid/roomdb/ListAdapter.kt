@@ -39,8 +39,9 @@ class ListAdapter(private val favoriteList: List<Meme>): RecyclerView.Adapter<Vi
         return favoriteList.size
     }
 //DAB CODE
-    fun deleteFavorite(index: Int){
-
+     fun deleteSwipedFavorite(index: Int){
+        favoriteList.remove
+        notifyDataSetChanged()
     }
 
 }
