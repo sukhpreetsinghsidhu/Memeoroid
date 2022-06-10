@@ -7,6 +7,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -59,6 +60,10 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
 
         //assigning the selected image id from the previous page to a var to fetch from api json object
         val imageSelected = intent.getStringExtra("imageSelected")
+        //fetching the user input text from the previous activity page
+        topText = intent.getStringExtra("topText").toString()
+        bottomText = intent.getStringExtra("bottomText").toString()
+
 
         //variable to access the api json object to fetch the image
         val inter = RetroApiInterface.create()
@@ -72,7 +77,7 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
             //using picasso to load image from the api into the image view component
             //picasso is a library used to load images from an external source
             Picasso.with(this@CustomMemeDisplayActivity).load(urls[imageSelected?.toInt()!!]).into(imageView)
-
+            Log.d("URL", "")
             //generating a meme to be displayed
             generateMemeText()
         }
@@ -80,7 +85,7 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
         //saves the displayed image into the gallery
         saveButton.setOnClickListener{
             savingImageToGallery()
-            Toast.makeText(applicationContext,"Meme saved to Gallery", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"Meme Saved to Gallery", Toast.LENGTH_LONG).show()
         }
 
         //redirect back to create meme page                    ******************** need to rename the button id in the xml
@@ -136,10 +141,10 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
 
         //fetch the white background image from the project resource folder
         val backgroundImage = BitmapFactory.decodeResource(resources, R.drawable.whitebackground)
-        val memeImage = (imageView.drawable as BitmapDrawable).bitmap
+        val memeImage = (imageView.drawable as BitmapDrawable?)?.bitmap
 
         //calling the above function and passing the background image and the selected meme
-        bitmapOriginal = addBackgroundToImage(backgroundImage,memeImage)
+        bitmapOriginal = addBackgroundToImage(backgroundImage!!,memeImage!!)
 
         //retrieving the new created image with the white background
         // and assigning it to the imageview component
