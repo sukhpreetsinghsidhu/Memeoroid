@@ -31,7 +31,7 @@ class ListAdapter(private val favoriteList: MutableList<Meme>): RecyclerView.Ada
             var context = holder.card.getContext()
             var intent = Intent(context, CustomMemeDisplayActivity::class.java)
             //intent.putExtra("ID", itemVM.memeId )
-            println(itemVM.image_description)
+            println("THIS IS FROM ADAPTER " + itemVM.image_description)
             intent.putExtra("imageSelected",itemVM.image_description)
             intent.putExtra("topText",itemVM.topText)
             intent.putExtra("bottomText",itemVM.bottomText)
