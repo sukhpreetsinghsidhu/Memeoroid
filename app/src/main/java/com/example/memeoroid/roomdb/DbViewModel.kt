@@ -15,7 +15,8 @@ class DbViewModel(app: Application) : AndroidViewModel(app) {
     lateinit var favoriteById : LiveData<Meme>
 
     init {
-        repo = MemeRepo(app)
+        val dao = AppDatabase.getInstance(app)?.memeDao()
+        repo = MemeRepo(dao!!)
         allFavorites = repo.selectAllFavorites(10,0)!!
     }
 
