@@ -42,19 +42,6 @@ class FavoritesActivity : AppCompatActivity() {
 //        vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
 //        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
 //        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
-// vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
-//        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
-//        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
-// vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
-//        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
-//        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
-// vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
-//        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
-//        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
-
-//        vm.updateFavorite(Meme(3, "Finding a new meme format", "Still using the Drake meme after 2 years", "Drake Hotline Bling"))
-//        vm.deleteFavorite(Meme(1, "Top1", "Bottom1", "Drake Hotline Bling"))
-
 
         // get all favorite memes
         vm.allFavorites.observe(this) { favoritesList ->
@@ -80,6 +67,7 @@ class FavoritesActivity : AppCompatActivity() {
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
             ) {
+                vm.deleteFavorite(favoritesList.get(viewHolder.adapterPosition))
                 adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
             }
         }
@@ -153,6 +141,12 @@ class FavoritesActivity : AppCompatActivity() {
             offset -= limit
 
             loadData()
+        }
+
+        addButton.setOnClickListener {
+            val intent = Intent(this, NewActivity::class.java)
+            startActivity(intent)
+            Toast.makeText(applicationContext,"Redirecting to Create Meme", Toast.LENGTH_LONG).show()
         }
 
         floatingBtn.setOnClickListener{

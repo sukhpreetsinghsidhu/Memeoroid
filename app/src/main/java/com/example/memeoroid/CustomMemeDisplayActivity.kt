@@ -1,12 +1,15 @@
 package com.example.memeoroid
 
+import android.accounts.AccountManager.get
 import android.content.Intent
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -19,6 +22,7 @@ import com.example.memeoroid.retrofit.TemplateRepo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_custom_meme_display.*
+import java.lang.reflect.Array.get
 
 //This activity page displays the curated meme from the new meme page
 //Top and bottom text are fetched along with the selected image id
@@ -59,6 +63,10 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
 
         //assigning the selected image id from the previous page to a var to fetch from api json object
         val imageSelected = intent.getStringExtra("imageSelected")
+        //fetching the user input text from the previous activity page
+        topText = intent.getStringExtra("topText").toString()
+        bottomText = intent.getStringExtra("bottomText").toString()
+
 
         //variable to access the api json object to fetch the image
         val inter = RetroApiInterface.create()
@@ -71,16 +79,35 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
 
             //using picasso to load image from the api into the image view component
             //picasso is a library used to load images from an external source
-            Picasso.with(this@CustomMemeDisplayActivity).load(urls[imageSelected?.toInt()!!]).into(imageView)
+            //Picasso.with(this@CustomMemeDisplayActivity).load(urls[imageSelected?.toInt()!!]).into(imageView)
+            Picasso.with(this@CustomMemeDisplayActivity)
+                .load(urls[imageSelected?.toInt()!!])
+                .into(object: com.squareup.picasso.Target {
+                    override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
 
+                    }
+
+                    override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
+                        imageView.setImageBitmap(bitmap)
+                        generateMemeText(imageView)
+                    }
+
+                    override fun onBitmapFailed(errorDrawable: Drawable?) {
+
+                    }
+                })
+
+
+                        //println(imageView)
+            //println(urls)
             //generating a meme to be displayed
-            generateMemeText()
+            //generateMemeText(imageView)
         }
 
         //saves the displayed image into the gallery
         saveButton.setOnClickListener{
             savingImageToGallery()
-            Toast.makeText(applicationContext,"Meme saved to Gallery", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"Meme Saved to Gallery", Toast.LENGTH_LONG).show()
         }
 
         //redirect back to create meme page                    ******************** need to rename the button id in the xml
@@ -132,25 +159,25 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
     }
 
     //Adds a white background to the selected image
-    private fun generateMemeImage(){
+    private fun generateMemeImage(imageView: ImageView){
 
         //fetch the white background image from the project resource folder
         val backgroundImage = BitmapFactory.decodeResource(resources, R.drawable.whitebackground)
-        val memeImage = (imageView.drawable as BitmapDrawable).bitmap
+        val memeImage = (imageView.drawable as BitmapDrawable?)?.bitmap
 
         //calling the above function and passing the background image and the selected meme
-        bitmapOriginal = addBackgroundToImage(backgroundImage,memeImage)
+        bitmapOriginal = addBackgroundToImage(backgroundImage!!,memeImage!!)
 
         //retrieving the new created image with the white background
         // and assigning it to the imageview component
         imageView.setImageBitmap(bitmapOriginal)
     }
 
-    private fun generateMemeText(){
+    private fun generateMemeText(imageView: ImageView){
 
         //calling the above function to create a new image with a white background
         // and selected image on top of it
-        generateMemeImage()
+        generateMemeImage(imageView)
 
         //fetching the user input text from the previous activity page
         topText = intent.getStringExtra("topText").toString()

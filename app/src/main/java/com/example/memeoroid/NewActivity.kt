@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.memeoroid.retrofit.*
+import com.example.memeoroid.roomdb.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_new.*
@@ -16,6 +17,7 @@ class NewActivity : AppCompatActivity() {
 
     //variables to access API and fetch json objects in the API
     private lateinit var vm: ApiViewModel
+    lateinit var dbvm: DbViewModel
     private var descriptions: MutableList<String> = ArrayList()
     private var urls: MutableList<String> = ArrayList()
 
@@ -25,6 +27,7 @@ class NewActivity : AppCompatActivity() {
 
     //variable to pass the id of the image selected to the next page to generate and display the custom meme
     lateinit var imageSelected : String
+    lateinit var imageDesc : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,8 @@ class NewActivity : AppCompatActivity() {
 
         topText = findViewById(R.id.editTopText)
         bottomText = findViewById(R.id.editBottomText)
+
+        dbvm = DbViewModel(application)
 
         //Till line 70 retrofit -> need to comment ********************************
         val inter = RetroApiInterface.create()
@@ -60,6 +65,7 @@ class NewActivity : AppCompatActivity() {
                     //assigning image id to a variable to pass to the next page
                     // to fetch and display image on that page
                     imageSelected = position.toString()
+                    //imageDesc = descriptions[position]
                     Picasso.with(this@NewActivity).load(urls[position]).into(imageView)
                 }
 
@@ -75,7 +81,7 @@ class NewActivity : AppCompatActivity() {
             editBottomText.text.clear()
             dropdown.setSelection(0)
             Picasso.with(this@NewActivity).load(urls[0]).into(imageView)
-            Toast.makeText(applicationContext,"Page reset", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"Page Reset", Toast.LENGTH_LONG).show()
         }
 
         //Redirects to the display custom generated meme page
@@ -86,6 +92,8 @@ class NewActivity : AppCompatActivity() {
 
             val topTemp = topText.text.toString()
             val bottomTemp = bottomText.text.toString()
+
+            dbvm.insertFavorite(Meme(null, topTemp, bottomTemp, imageSelected))
 
             val intent = Intent(this, CustomMemeDisplayActivity::class.java)
 

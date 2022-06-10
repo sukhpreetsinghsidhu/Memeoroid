@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.memeoroid.CustomMemeDisplayActivity
 
 // Adapter, which makes a view for each meme in the dataset
 class ListAdapter(private val favoriteList: MutableList<Meme>): RecyclerView.Adapter<ViewHolder>() { //changed to mutable list from list
@@ -26,11 +27,15 @@ class ListAdapter(private val favoriteList: MutableList<Meme>): RecyclerView.Ada
         holder.bottomText.text = itemVM.bottomText
 
         holder.card.setOnClickListener() {
-            Log.d("CARD CLICKED", itemVM.memeId.toString())
-            /*var context = holder.card.getContext()
-            var intent = Intent(context, DetailActivity::class.java)
-            intent.putExtra("ID", itemVM.memeId )
-            context.startActivity(intent)*/
+            //println("CARD CLICKED" + itemVM.memeId.toString())
+            var context = holder.card.getContext()
+            var intent = Intent(context, CustomMemeDisplayActivity::class.java)
+            //intent.putExtra("ID", itemVM.memeId )
+            println("THIS IS FROM ADAPTER " + itemVM.image_description)
+            intent.putExtra("imageSelected",itemVM.image_description)
+            intent.putExtra("topText",itemVM.topText)
+            intent.putExtra("bottomText",itemVM.bottomText)
+            context.startActivity(intent)
         }
     }
 
