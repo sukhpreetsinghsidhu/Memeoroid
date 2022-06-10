@@ -9,6 +9,12 @@ import com.example.memeoroid.retrofit.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_new.*
+import kotlinx.android.synthetic.main.activity_new.createMemeButton
+import kotlinx.android.synthetic.main.activity_new.dropdown
+import kotlinx.android.synthetic.main.activity_new.editBottomText
+import kotlinx.android.synthetic.main.activity_new.editTopText
+import kotlinx.android.synthetic.main.activity_new.imageView
+import kotlinx.android.synthetic.main.activity_uppdate.*
 
 //Select a meme from a curated list fetched from an API online
 //Add text to the selected meme and generate a custom meme to view/save to gallery/ add to favorites
@@ -69,13 +75,10 @@ class UpdateFavoritesActivity : AppCompatActivity() {
             }
         }
 
-        //Resets both top and bottom text field and image
-        resetButton.setOnClickListener{
-            editTopText.text.clear()
-            editBottomText.text.clear()
-            dropdown.setSelection(0)
-            Picasso.with(this@UpdateFavoritesActivity).load(urls[0]).into(imageView)
-            Toast.makeText(applicationContext,"Page reset", Toast.LENGTH_LONG).show()
+        //Cancels update and returns to favorite list
+        cancelButton.setOnClickListener{
+            val myIntent = Intent(this, FavoritesActivity::class.java)
+            startActivity(myIntent)
         }
 
         //Redirects to the display custom generated meme page
