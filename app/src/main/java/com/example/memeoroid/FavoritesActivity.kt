@@ -51,6 +51,11 @@ class FavoritesActivity : AppCompatActivity() {
             } else {
                 emptyListText.text = ""
             }
+            if(favoritesList.size<10){
+                LoadMore.visibility = View.GONE
+            }else{
+                LoadMore.visibility = View.VISIBLE
+            }
         }
 
         // get reference to view to populate
@@ -178,6 +183,12 @@ fun loadData(){
             Prevous.visibility = View.GONE
         }else{
             Prevous.visibility = View.VISIBLE
+        }
+
+        if (it.isEmpty()) {
+            emptyListText.text = "LIST EMPTY"
+        } else {
+            emptyListText.text = ""
         }
     }
 }
