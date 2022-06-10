@@ -90,7 +90,7 @@ class FavoritesActivity : AppCompatActivity() {
                 direction: Int
             ) {
                 adapter.deleteSwipedFavorite(viewHolder.adapterPosition) //must change to update/edit, is currently delete
-                vm.deleteFavorite(favoritesList.get(viewHolder.adapterPosition))
+                vm.updateFavorite(favoritesList.get(viewHolder.adapterPosition))
             }
         }
 
