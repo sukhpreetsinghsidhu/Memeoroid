@@ -74,11 +74,14 @@ class FavoritesActivity : AppCompatActivity() {
                 direction: Int
             ) {
                 adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
+                vm.deleteFavorite(favoritesList.get(viewHolder.adapterPosition))
+
             }
         }
 
         val toLeftTouchHelper = ItemTouchHelper(swipeDelete)
         toLeftTouchHelper.attachToRecyclerView(recyclerView)
+
 
         //RightSwipe
         val swipeUpdate = object : OnSwipeRight(this){
@@ -87,6 +90,7 @@ class FavoritesActivity : AppCompatActivity() {
                 direction: Int
             ) {
                 adapter.deleteSwipedFavorite(viewHolder.adapterPosition) //must change to update/edit, is currently delete
+                vm.deleteFavorite(favoritesList.get(viewHolder.adapterPosition))
             }
         }
 
