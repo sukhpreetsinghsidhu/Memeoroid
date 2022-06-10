@@ -73,8 +73,8 @@ class FavoritesActivity : AppCompatActivity() {
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
             ) {
-                adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
                 vm.deleteFavorite(favoritesList.get(viewHolder.adapterPosition))
+                adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
 
             }
         }
@@ -89,8 +89,9 @@ class FavoritesActivity : AppCompatActivity() {
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
             ) {
-                adapter.deleteSwipedFavorite(viewHolder.adapterPosition) //must change to update/edit, is currently delete
                 vm.updateFavorite(favoritesList.get(viewHolder.adapterPosition))
+                adapter.deleteSwipedFavorite(viewHolder.adapterPosition) //must change to update/edit, is currently delete
+
             }
         }
 
