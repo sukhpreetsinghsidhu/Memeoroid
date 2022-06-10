@@ -81,6 +81,8 @@ class FavoritesActivity : AppCompatActivity() {
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
             ) {
+
+                vm.updateFavorite(favoritesList.get(viewHolder.adapterPosition))
                 adapter.deleteSwipedFavorite(viewHolder.adapterPosition) //must change to update/edit, is currently delete
             }
         }
