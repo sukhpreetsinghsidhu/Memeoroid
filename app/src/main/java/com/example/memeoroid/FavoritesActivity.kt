@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memeoroid.roomdb.*
@@ -72,7 +73,33 @@ class FavoritesActivity : AppCompatActivity() {
         // create adapter with data source and assign adapter
         adapter = ListAdapter(favoritesList)
         recyclerView.adapter = adapter
+//DAB CODE
+        //LeftSwipe
+        val swipeDelete = object : OnSwipeLeft(this){
+            override fun onSwiped(
+                viewHolder: RecyclerView.ViewHolder,
+                direction: Int
+            ) {
+                adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
+            }
+        }
 
+        val toLeftTouchHelper = ItemTouchHelper(swipeDelete)
+        toLeftTouchHelper.attachToRecyclerView(recyclerView)
+
+        //RightSwipe
+        val swipeUpdate = object : OnSwipeRight(this){
+            override fun onSwiped(
+                viewHolder: RecyclerView.ViewHolder,
+                direction: Int
+            ) {
+                adapter.deleteSwipedFavorite(viewHolder.adapterPosition) //must change to update/edit, is currently delete
+            }
+        }
+
+        val toRightTouchHelper = ItemTouchHelper(swipeUpdate)
+        toRightTouchHelper.attachToRecyclerView(recyclerView)
+//DAB CODE END
         //search bar functionality
         searchBar.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
