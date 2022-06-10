@@ -8,10 +8,12 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memeoroid.roomdb.*
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_favorites.*
 
 class FavoritesActivity : AppCompatActivity() {
@@ -26,6 +28,11 @@ class FavoritesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorites)
+
+        supportActionBar?.hide()
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+
+        val floatingBtn : FloatingActionButton = findViewById(R.id.floatingBtn)
 
         // initialize db viewmodel
         vm = DbViewModel(application)
@@ -151,6 +158,12 @@ class FavoritesActivity : AppCompatActivity() {
             offset -= limit
 
             loadData()
+        }
+
+        floatingBtn.setOnClickListener{
+            val myIntent = Intent(this, MainActivity::class.java)
+            startActivity(myIntent)
+            Toast.makeText(applicationContext,"Redirecting to Home Page", Toast.LENGTH_LONG).show()
         }
 
     }
