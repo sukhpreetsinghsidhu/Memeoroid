@@ -9,7 +9,7 @@ import com.example.memeoroid.retrofit.*
 import com.example.memeoroid.roomdb.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_uppdate.*
+import kotlinx.android.synthetic.main.activity_uppdate.* //changed from new
 
 //Select a meme from a curated list fetched from an API online
 //Add text to the selected meme and generate a custom meme to view/save to gallery/ add to favorites
@@ -22,8 +22,9 @@ class UpdateFavoritesActivity : AppCompatActivity() {
     private var urls: MutableList<String> = ArrayList()
 
     //variables to collect user input text to add to meme
-    private lateinit var topText : EditText
-    private lateinit var bottomText : EditText
+     lateinit var topText : EditText
+     lateinit var bottomText : EditText
+ //    lateinit var memeId
 
     //variable to pass the id of the image selected to the next page to generate and display the custom meme
     lateinit var imageSelected : String
@@ -31,7 +32,7 @@ class UpdateFavoritesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_uppdate)
+        setContentView(R.layout.activity_uppdate) //changed from new
 
         //Hides the app title and the system notifications top bar
         supportActionBar?.hide()
@@ -42,6 +43,11 @@ class UpdateFavoritesActivity : AppCompatActivity() {
 
         topText = findViewById(R.id.editTopText)
         bottomText = findViewById(R.id.editBottomText)
+  //      memeId =
+
+        topText.setText(intent.getStringExtra("topText"))
+        bottomText.setText(intent.getStringExtra("bottomText"))
+
 
         dbvm = DbViewModel(application)
 
@@ -50,9 +56,10 @@ class UpdateFavoritesActivity : AppCompatActivity() {
         val repo = TemplateRepo(inter)
         vm = ApiViewModel(repo)
 
-        vm.getAllTemplates()
+      vm.getAllTemplates()
 
         vm.templateList.observe(this) { for (item in it) { descriptions.add(item.name)
+
             urls.add(item.image) }
 
             val dropdownAdapter: ArrayAdapter<String> = ArrayAdapter(this,
@@ -77,11 +84,8 @@ class UpdateFavoritesActivity : AppCompatActivity() {
 
         //Resets both top and bottom text field and image
         cancelButton.setOnClickListener{
-            editTopText.text.clear()
-            editBottomText.text.clear()
-            dropdown.setSelection(0)
-            Picasso.with(this@UpdateFavoritesActivity).load(urls[0]).into(imageView)
-            Toast.makeText(applicationContext,"Page Reset", Toast.LENGTH_LONG).show()
+            val myIntent = Intent(this, FavoritesActivity::class.java)
+            startActivity(myIntent)
         }
 
         //Redirects to the display custom generated meme page
@@ -93,7 +97,7 @@ class UpdateFavoritesActivity : AppCompatActivity() {
             val topTemp = topText.text.toString()
             val bottomTemp = bottomText.text.toString()
 
-            dbvm.insertFavorite(Meme(null, topTemp, bottomTemp, imageSelected))
+            dbvm.updateFavorite(Meme(null, topTemp, bottomTemp, imageSelected))
 
             val intent = Intent(this, CustomMemeDisplayActivity::class.java)
 

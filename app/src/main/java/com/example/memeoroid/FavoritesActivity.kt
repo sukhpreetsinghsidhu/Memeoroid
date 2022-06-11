@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.memeoroid.roomdb.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_favorites.*
+import kotlinx.android.synthetic.main.meme_list_item.*
 
 class FavoritesActivity : AppCompatActivity() {
 
@@ -76,14 +77,17 @@ class FavoritesActivity : AppCompatActivity() {
         toLeftTouchHelper.attachToRecyclerView(recyclerView)
 
         //RightSwipe
-        val updateFavoritesActivity = Intent(this, NewActivity::class.java)
+        val updateFavoritesActivity = Intent(this, UpdateFavoritesActivity::class.java)
+
+
         val swipeUpdate = object : OnSwipeRight(this){
             override fun onSwiped(
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
-            ) {
-
-                adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
+            ) {updateFavoritesActivity.putExtra("topText",favoritesList.get(viewHolder.adapterPosition).memeId)
+                updateFavoritesActivity.putExtra("topText",favoritesList.get(viewHolder.adapterPosition).topText)
+                updateFavoritesActivity.putExtra("bottomText",favoritesList.get(viewHolder.adapterPosition).bottomText)
+                updateFavoritesActivity.putExtra("topText",favoritesList.get(viewHolder.adapterPosition).image_description)
                 startActivity(updateFavoritesActivity)
                  //must change to update/edit, is currently delete
 
