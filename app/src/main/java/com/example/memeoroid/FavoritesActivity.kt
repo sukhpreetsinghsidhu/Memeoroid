@@ -76,14 +76,16 @@ class FavoritesActivity : AppCompatActivity() {
         toLeftTouchHelper.attachToRecyclerView(recyclerView)
 
         //RightSwipe
-        val updateFavoritesActivity = Intent(this, UpdateFavoritesActivity::class.java)
+        val updateFavoritesActivity = Intent(this, NewActivity::class.java)
         val swipeUpdate = object : OnSwipeRight(this){
             override fun onSwiped(
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
-            ) { startActivity(updateFavoritesActivity)
-                vm.updateFavorite(favoritesList.get(viewHolder.adapterPosition))
-                adapter.deleteSwipedFavorite(viewHolder.adapterPosition) //must change to update/edit, is currently delete
+            ) {
+
+                adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
+                startActivity(updateFavoritesActivity)
+                 //must change to update/edit, is currently delete
 
             }
         }

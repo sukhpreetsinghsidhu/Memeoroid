@@ -1,4 +1,3 @@
-
 package com.example.memeoroid
 
 import android.content.Intent
@@ -7,14 +6,9 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.memeoroid.retrofit.*
+import com.example.memeoroid.roomdb.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_new.*
-import kotlinx.android.synthetic.main.activity_new.createMemeButton
-import kotlinx.android.synthetic.main.activity_new.dropdown
-import kotlinx.android.synthetic.main.activity_new.editBottomText
-import kotlinx.android.synthetic.main.activity_new.editTopText
-import kotlinx.android.synthetic.main.activity_new.imageView
 import kotlinx.android.synthetic.main.activity_uppdate.*
 
 //Select a meme from a curated list fetched from an API online
@@ -23,6 +17,7 @@ class UpdateFavoritesActivity : AppCompatActivity() {
 
     //variables to access API and fetch json objects in the API
     private lateinit var vm: ApiViewModel
+    lateinit var dbvm: DbViewModel
     private var descriptions: MutableList<String> = ArrayList()
     private var urls: MutableList<String> = ArrayList()
 
@@ -32,10 +27,11 @@ class UpdateFavoritesActivity : AppCompatActivity() {
 
     //variable to pass the id of the image selected to the next page to generate and display the custom meme
     lateinit var imageSelected : String
+    lateinit var imageDesc : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new)
+        setContentView(R.layout.activity_uppdate)
 
         //Hides the app title and the system notifications top bar
         supportActionBar?.hide()
@@ -46,6 +42,8 @@ class UpdateFavoritesActivity : AppCompatActivity() {
 
         topText = findViewById(R.id.editTopText)
         bottomText = findViewById(R.id.editBottomText)
+
+        dbvm = DbViewModel(application)
 
         //Till line 70 retrofit -> need to comment ********************************
         val inter = RetroApiInterface.create()
@@ -67,6 +65,7 @@ class UpdateFavoritesActivity : AppCompatActivity() {
                     //assigning image id to a variable to pass to the next page
                     // to fetch and display image on that page
                     imageSelected = position.toString()
+                    //imageDesc = descriptions[position]
                     Picasso.with(this@UpdateFavoritesActivity).load(urls[position]).into(imageView)
                 }
 
@@ -76,10 +75,13 @@ class UpdateFavoritesActivity : AppCompatActivity() {
             }
         }
 
-        //Cancels update and returns to favorite list
+        //Resets both top and bottom text field and image
         cancelButton.setOnClickListener{
-            val myIntent = Intent(this, FavoritesActivity::class.java)
-            startActivity(myIntent)
+            editTopText.text.clear()
+            editBottomText.text.clear()
+            dropdown.setSelection(0)
+            Picasso.with(this@UpdateFavoritesActivity).load(urls[0]).into(imageView)
+            Toast.makeText(applicationContext,"Page Reset", Toast.LENGTH_LONG).show()
         }
 
         //Redirects to the display custom generated meme page
@@ -90,6 +92,8 @@ class UpdateFavoritesActivity : AppCompatActivity() {
 
             val topTemp = topText.text.toString()
             val bottomTemp = bottomText.text.toString()
+
+            dbvm.insertFavorite(Meme(null, topTemp, bottomTemp, imageSelected))
 
             val intent = Intent(this, CustomMemeDisplayActivity::class.java)
 
