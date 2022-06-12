@@ -17,10 +17,8 @@
         android:src="@drawable/share_mid_layer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/surfMemesTitle"
@@ -39,29 +37,25 @@
 
     <ImageView
         android:id="@+id/memeBackground"
-        android:layout_width="294dp"
-        android:layout_height="396dp"
-        android:background="@drawable/custom_button_round"
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:background="@drawable/round_rectangle_background"
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498"
         android:elevation="8dp"/>
 
     <ImageView
         android:id="@+id/memeImageView"
-        android:layout_width="247dp"
-        android:layout_height="319dp"
+        android:layout_width="250dp"
+        android:layout_height="333dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:elevation="8dp"
-        android:background="@drawable/custom_button_round"/>
+        android:elevation="8dp" />
 
     <Button
         android:id="@+id/nextButton"
