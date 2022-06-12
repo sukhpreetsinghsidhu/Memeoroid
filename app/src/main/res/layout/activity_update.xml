@@ -11,7 +11,8 @@
     <ImageView
         android:id="@+id/screenMidLayer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
         android:src="@drawable/share_mid_layer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/lexend_deca_semibold"
-        android:text="Create"
+        android:text="Not Funny?"
         android:textColor="@color/black"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,8 +134,8 @@
         android:elevation="8dp"
         android:fontFamily="@font/raleway_bold"
         android:text="update"
-        android:textColor="@color/white"
-        app:backgroundTint="@color/black"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/beige"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancelButton" />
 
@@ -148,7 +149,7 @@
         android:fontFamily="@font/raleway_bold"
         android:text="cancel"
         android:textColor="@color/black"
-        app:backgroundTint="@color/darkGrey"
+        app:backgroundTint="@color/beige"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/floatingBtn" />
 
