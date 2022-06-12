@@ -22,6 +22,9 @@
             android:name=".NewActivity"
             android:exported="false" />
         <activity
+            android:name=".UpdateFavoritesActivity"
+            android:exported="false" />
+        <activity
             android:name=".GalleryActivity"
             android:exported="false" />
         <activity
