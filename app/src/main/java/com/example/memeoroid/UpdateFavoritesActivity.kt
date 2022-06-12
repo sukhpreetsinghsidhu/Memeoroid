@@ -9,7 +9,8 @@ import com.example.memeoroid.retrofit.*
 import com.example.memeoroid.roomdb.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_uppdate.* //changed from new
+import kotlinx.android.synthetic.main.activity_update.*
+import kotlinx.android.synthetic.main.activity_update.* //changed from new
 
 //Select a meme from a curated list fetched from an API online
 //Add text to the selected meme and generate a custom meme to view/save to gallery/ add to favorites
@@ -32,7 +33,7 @@ class UpdateFavoritesActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_uppdate) //changed from new
+        setContentView(R.layout.activity_update) //changed from new
 
         //Hides the app title and the system notifications top bar
         supportActionBar?.hide()
