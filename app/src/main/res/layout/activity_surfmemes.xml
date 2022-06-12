@@ -1,39 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SurfMemesActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    tools:context=".SurfMemesActivity"
+    android:layout_margin="-15dp"
+    app:elevation="15dp"
+    android:elevation="15dp"
+    android:background="@drawable/create_bottom_layer">
 
     <ImageView
-        android:layout_width="400dp"
+        android:id="@+id/landingImage"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:src="@drawable/landing_mid_layer"
+        android:elevation="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:text="Explore"
+        android:textColor="@color/white"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="2"
+        android:fontFamily="@font/lexend_deca_semibold"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+
+    <ImageView
+        android:id="@+id/memeBackground"
+        android:layout_width="340dp"
         android:layout_height="400dp"
-        android:id="@+id/memeImageView"/>
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="120dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="1"
+        android:background="@drawable/custom_button_round" />
+
+
+    <ImageView
+        android:id="@+id/memeImageView"
+        android:layout_width="244dp"
+        android:layout_height="315dp"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="156dp" />
 
     <Button
+        android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/nextButton"
-        android:text="Next Meme"/>
-
-    </LinearLayout>
+        android:text="Next Meme"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="557dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="5"
+        android:shadowDy="5"
+        android:shadowRadius="1000"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:layout_margin="40dp"
+        android:backgroundTint="@color/orange"
         android:elevation="10dp"
         android:src="@drawable/ic_baseline_home_24"
-        android:id="@+id/floatingBtn"
-        android:backgroundTint="@color/black"
-        app:tint="@color/orange"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96"
+        app:tint="@color/white" />
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

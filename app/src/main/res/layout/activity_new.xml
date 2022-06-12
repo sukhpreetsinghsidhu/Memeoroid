@@ -5,7 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NewActivity">
+    tools:context=".NewActivity"
+    android:background="@drawable/create_bottom_layer">
+
+    <ImageView
+        android:id="@+id/landingImage"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:src="@drawable/create_mid_layer"
+        android:elevation="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -100,7 +108,8 @@
         android:elevation="10dp"
         android:src="@drawable/ic_baseline_home_24"
         android:id="@+id/floatingBtn"
-        android:backgroundTint="@color/black"
-        app:tint="@color/orange"/>
+        android:backgroundTint="@color/orange"
+        app:tint="@color/white"/>
+
 
 </RelativeLayout>
