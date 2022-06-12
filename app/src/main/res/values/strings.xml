@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Memeoroid</string>
+    <string name="surf">Surf</string>
+    <string name="favorites">Favorites</string>
+    <string name="create_your_own">Create Your Own</string>
+    <string name="explore">Explore</string>
 </resources>
