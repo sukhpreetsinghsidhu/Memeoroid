@@ -5,64 +5,80 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SurfMemesActivity"
-    android:layout_margin="-15dp"
-    app:elevation="15dp"
-    android:elevation="15dp"
     android:background="@drawable/create_bottom_layer">
 
     <ImageView
         android:id="@+id/landingImage"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:src="@drawable/landing_mid_layer"
-        android:elevation="20dp" />
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:contentDescription="TODO"
+        android:scaleType="centerCrop"
+        android:src="@drawable/share_mid_layer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/surfMemesTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:text="Explore"
-        android:textColor="@color/white"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="2"
         android:fontFamily="@font/lexend_deca_semibold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+        android:text="@string/explore"
+        android:textSize="48sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
 
     <ImageView
         android:id="@+id/memeBackground"
-        android:layout_width="340dp"
-        android:layout_height="400dp"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="120dp"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="1"
-        android:background="@drawable/custom_button_round" />
-
+        android:layout_width="294dp"
+        android:layout_height="396dp"
+        android:background="@drawable/custom_button_round"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498"
+        android:elevation="8dp"/>
 
     <ImageView
         android:id="@+id/memeImageView"
-        android:layout_width="244dp"
-        android:layout_height="315dp"
-        tools:layout_editor_absoluteX="77dp"
-        tools:layout_editor_absoluteY="156dp" />
+        android:layout_width="247dp"
+        android:layout_height="319dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="8dp"
+        android:background="@drawable/custom_button_round"/>
 
     <Button
         android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_button_round"
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        android:elevation="8dp"
         android:text="Next Meme"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="557dp"
-        android:shadowColor="@color/black"
-        android:shadowDx="5"
-        android:shadowDy="5"
-        android:shadowRadius="1000"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.894" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingBtn"
@@ -72,7 +88,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="40dp"
         android:backgroundTint="@color/orange"
-        android:elevation="10dp"
+        app:elevation="10dp"
         android:src="@drawable/ic_baseline_home_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
