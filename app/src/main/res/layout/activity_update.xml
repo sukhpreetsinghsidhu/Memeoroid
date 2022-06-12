@@ -161,6 +161,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="40dp"
         android:backgroundTint="@color/orange"
+        app:borderWidth="0dp"
         android:contentDescription="TODO"
         android:elevation="8dp"
         android:src="@drawable/ic_baseline_home_24"
