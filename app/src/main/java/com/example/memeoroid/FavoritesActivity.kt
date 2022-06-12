@@ -84,10 +84,10 @@ class FavoritesActivity : AppCompatActivity() {
             override fun onSwiped(
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
-            ) {updateFavoritesActivity.putExtra("topText",favoritesList.get(viewHolder.adapterPosition).memeId)
+            ) { updateFavoritesActivity.putExtra("memeId",favoritesList.get(viewHolder.adapterPosition).memeId)
                 updateFavoritesActivity.putExtra("topText",favoritesList.get(viewHolder.adapterPosition).topText)
                 updateFavoritesActivity.putExtra("bottomText",favoritesList.get(viewHolder.adapterPosition).bottomText)
-                updateFavoritesActivity.putExtra("topText",favoritesList.get(viewHolder.adapterPosition).image_description)
+                updateFavoritesActivity.putExtra("dropdown",favoritesList.get(viewHolder.adapterPosition).image_description)
                 startActivity(updateFavoritesActivity)
                  //must change to update/edit, is currently delete
 
