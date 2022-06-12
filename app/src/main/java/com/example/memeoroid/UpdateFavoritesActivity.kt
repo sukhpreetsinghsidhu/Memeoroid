@@ -45,6 +45,7 @@ class UpdateFavoritesActivity : AppCompatActivity() {
         bottomText = findViewById(R.id.editBottomText)
   //      memeId =
 
+        imageSelected = intent.getStringExtra("dropdown")!!
         topText.setText(intent.getStringExtra("topText"))
         bottomText.setText(intent.getStringExtra("bottomText"))
 
@@ -71,7 +72,7 @@ class UpdateFavoritesActivity : AppCompatActivity() {
                                              position: Int, id: Long){
                     //assigning image id to a variable to pass to the next page
                     // to fetch and display image on that page
-                    imageSelected = position.toString()
+                    //imageSelected = position.toString()
                     //imageDesc = descriptions[position]
                     Picasso.with(this@UpdateFavoritesActivity).load(urls[position]).into(imageView)
                 }
@@ -80,6 +81,8 @@ class UpdateFavoritesActivity : AppCompatActivity() {
                     Picasso.with(this@UpdateFavoritesActivity).load(urls[0]).into(imageView)
                 }
             }
+
+            dropdown.setSelection(imageSelected.toInt())
         }
 
         //Resets both top and bottom text field and image
@@ -96,12 +99,14 @@ class UpdateFavoritesActivity : AppCompatActivity() {
 
             val topTemp = topText.text.toString()
             val bottomTemp = bottomText.text.toString()
+            val img = dropdown.selectedItemPosition.toString()
+            val id = intent.getIntExtra("memeId",0)
 
-            dbvm.updateFavorite(Meme(null, topTemp, bottomTemp, imageSelected))
+            dbvm.updateFavorite(Meme(id, topTemp, bottomTemp, img))
 
             val intent = Intent(this, CustomMemeDisplayActivity::class.java)
 
-            intent.putExtra("imageSelected",imageSelected)
+            intent.putExtra("imageSelected",img)
             intent.putExtra("topText",topTemp)
             intent.putExtra("bottomText",bottomTemp)
             Toast.makeText(applicationContext,"Loading Custom Meme", Toast.LENGTH_LONG).show()
