@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         try{
             throw RuntimeException("Test")
-
         }catch (e: Exception){
             println(e)
         }
