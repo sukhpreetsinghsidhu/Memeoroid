@@ -70,10 +70,10 @@ android:background="@drawable/create_bottom_layer">
         android:textColor="@color/black"
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/favoritesButton" />
+        app:layout_constraintEnd_toStartOf="@+id/editButton" />
 
     <Button
-        android:id="@+id/favoritesButton"
+        android:id="@+id/editButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="44dp"
