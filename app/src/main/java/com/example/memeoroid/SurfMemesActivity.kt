@@ -51,7 +51,6 @@ class SurfMemesActivity : AppCompatActivity() {
             startActivity(myIntent)
             Toast.makeText(applicationContext,"Redirecting to Home Page", Toast.LENGTH_LONG).show()
         }
-
     }
 
     //function to load a new image into the imageview

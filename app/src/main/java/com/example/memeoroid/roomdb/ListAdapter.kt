@@ -55,10 +55,7 @@ class ListAdapter(private val favoriteList: MutableList<Meme>): RecyclerView.Ada
         //holder.thumbnail = itemVM.image_description
 
         holder.card.setOnClickListener() {
-            //println("CARD CLICKED" + itemVM.memeId.toString())
             var intent = Intent(context, CustomMemeDisplayActivity::class.java)
-            //intent.putExtra("ID", itemVM.memeId )
-            //println("THIS IS FROM ADAPTER " + itemVM.image_description)
             intent.putExtra("imageSelected",itemVM.image_description)
             intent.putExtra("topText",itemVM.topText)
             intent.putExtra("bottomText",itemVM.bottomText)
@@ -71,12 +68,11 @@ class ListAdapter(private val favoriteList: MutableList<Meme>): RecyclerView.Ada
         // size of the list/datasource
         return favoriteList.size
     }
-//DAB CODE
+    //DAB CODE
      fun deleteSwipedFavorite(index: Int){
         favoriteList.removeAt(index)
         notifyDataSetChanged()
     }
-
 }
 
 class ViewHolder(view: View): RecyclerView.ViewHolder(view) {

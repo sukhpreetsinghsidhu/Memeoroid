@@ -23,7 +23,7 @@ class GalleryActivity : AppCompatActivity() {
     var templateList: List<MemeTemplate> = listOf<MemeTemplate>();
     var startpoint = 0
     val limit = 10
-//    var endpoint = startpoint+limit
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gallery)
@@ -36,7 +36,7 @@ class GalleryActivity : AppCompatActivity() {
         val recyclerView2 = findViewById<RecyclerView>(R.id.recyclerView2)
         recyclerView2.layoutManager = LinearLayoutManager(this)
 
-        var adapter = GalleryAdapter(templateList)
+        val adapter = GalleryAdapter(templateList)
         recyclerView2.adapter = adapter
 
         val inter = RetroApiInterface.create()
@@ -53,11 +53,9 @@ class GalleryActivity : AppCompatActivity() {
                 endpoint = templateList.size-1
             }
             var buffer = templateList.subList(startpoint , startpoint+limit)
-            //templateList = it.subList(startpoint,startpoint+limit)
             adapter.setItems(buffer)
 
             //set load more visibility true
-            //println(it)
         }
         NextGallary.setOnClickListener {
             startpoint += limit
