@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.memeoroid.roomdb.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_favorites.*
+import kotlinx.android.synthetic.main.activity_surfmemes.*
 import kotlinx.android.synthetic.main.meme_list_item.*
 
 class FavoritesActivity : AppCompatActivity() {
@@ -23,7 +24,7 @@ class FavoritesActivity : AppCompatActivity() {
     lateinit var vm: DbViewModel
     var favoritesList = ArrayList<Meme>()
     lateinit var adapter: ListAdapter
-    val limit = 10
+    val limit = 5
     var offset =0
     var search =false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +50,11 @@ class FavoritesActivity : AppCompatActivity() {
             getFavorites(favoritesList)
             loadingPanel.visibility = View.GONE
             if (favoritesList.isEmpty()) {
-                emptyListText.text = "LIST EMPTY"
+                emptyListText.text = "No Memes? (͡๏̯͡๏)"
             } else {
                 emptyListText.text = ""
             }
-            if(favoritesList.size<10){
+            if(favoritesList.size<limit){
                 LoadMore.visibility = View.GONE
             }else{
                 LoadMore.visibility = View.VISIBLE
@@ -129,7 +130,7 @@ class FavoritesActivity : AppCompatActivity() {
                 vm.allFavorites.observe(this@FavoritesActivity) { favoritesList ->
                     getFavorites(favoritesList)
                     if (favoritesList.isEmpty()) {
-                        emptyListText.text = "LIST EMPTY"
+                        emptyListText.text = "No Memes? (͡๏̯͡๏)"
                     } else {
                         emptyListText.text = ""
                     }
@@ -139,9 +140,9 @@ class FavoritesActivity : AppCompatActivity() {
                         LoadMore.visibility = View.VISIBLE
                     }
                     if(offset == 0 ){
-                        Prevous.visibility = View.GONE
+                        Previous.visibility = View.GONE
                     }else{
-                        Prevous.visibility = View.VISIBLE
+                        Previous.visibility = View.VISIBLE
                     }
                 }
             }
@@ -152,7 +153,7 @@ class FavoritesActivity : AppCompatActivity() {
             offset+=limit
             loadData()
         }
-        Prevous.setOnClickListener {
+        Previous.setOnClickListener {
             offset -= limit
 
             loadData()
@@ -190,9 +191,9 @@ fun loadData(){
             LoadMore.visibility = View.VISIBLE
         }
         if(offset == 0 ){
-            Prevous.visibility = View.GONE
+            Previous.visibility = View.GONE
         }else{
-            Prevous.visibility = View.VISIBLE
+            Previous.visibility = View.VISIBLE
         }
 
         if (it.isEmpty()) {
