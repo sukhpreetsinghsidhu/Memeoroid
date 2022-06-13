@@ -1,5 +1,6 @@
 package com.example.memeoroid
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -75,8 +77,19 @@ class FavoritesActivity : AppCompatActivity() {
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
             ) {
-                vm.deleteFavorite(favoritesList.get(viewHolder.adapterPosition))
-                adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
+                    val alertDialogBuilder = AlertDialog.Builder(viewHolder.itemView.context)
+                    alertDialogBuilder.setTitle("Please confirm")
+                    alertDialogBuilder.setMessage("Delete meme forever?")
+                    alertDialogBuilder.setPositiveButton("Yes") {
+                        DialogInterface: DialogInterface, i: Int ->
+                        vm.deleteFavorite(favoritesList.get(viewHolder.adapterPosition))
+                        adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
+                    }
+                    alertDialogBuilder.setNegativeButton("No") {
+                        DialogInterface: DialogInterface, i: Int ->
+                        adapter.notifyItemChanged(viewHolder.adapterPosition)
+                    }
+                    alertDialogBuilder.show()
             }
         }
 
