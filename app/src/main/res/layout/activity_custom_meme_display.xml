@@ -34,7 +34,12 @@
             android:layout_margin="15dp"
             android:layout_weight="1"
             android:visibility="gone"
-            android:text="Back" />
+            android:text="Back"
+            android:background="@drawable/custom_button_round"
+            android:fontFamily="@font/raleway_bold"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white"
+            />
 
         <Button
             android:id="@+id/saveButton"
@@ -42,7 +47,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_weight="1"
-            android:text="Save Meme" />
+            android:text="Save Meme"
+            android:background="@drawable/custom_button_round"
+            android:fontFamily="@font/raleway_bold"
+            android:textColor="@color/black"
+            app:backgroundTint="@color/white"
+            />
 
     </LinearLayout>
 

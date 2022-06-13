@@ -102,6 +102,10 @@
                         android:id="@+id/Prevous"
                         android:layout_margin="10dp"
                         android:visibility="gone"
+                        android:background="@drawable/custom_button_round"
+                        android:fontFamily="@font/raleway_bold"
+                        android:textColor="@color/black"
+                        app:backgroundTint="@color/white"
                         />
                     <Button
                         android:layout_width="wrap_content"
@@ -109,6 +113,10 @@
                         android:text="Load More"
                         android:id="@+id/LoadMore"
                         android:layout_margin="10dp"
+                        android:background="@drawable/custom_button_round"
+                        android:fontFamily="@font/raleway_bold"
+                        android:textColor="@color/black"
+                        app:backgroundTint="@color/white"
                         />
 
                 </LinearLayout>
