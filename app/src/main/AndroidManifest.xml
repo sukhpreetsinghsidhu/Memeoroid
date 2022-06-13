@@ -22,11 +22,15 @@
             android:name=".NewActivity"
             android:exported="false" />
         <activity
+            android:name=".UpdateFavoritesActivity"
+            android:exported="false" />
+        <activity
             android:name=".GalleryActivity"
             android:exported="false" />
         <activity
             android:name=".FavoritesActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="stateVisible|adjustPan"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">
