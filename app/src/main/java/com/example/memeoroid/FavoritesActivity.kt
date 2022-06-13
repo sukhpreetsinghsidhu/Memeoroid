@@ -138,9 +138,9 @@ class FavoritesActivity : AppCompatActivity() {
                         LoadMore.visibility = View.VISIBLE
                     }
                     if(offset == 0 ){
-                        Prevous.visibility = View.GONE
+                        Previous.visibility = View.GONE
                     }else{
-                        Prevous.visibility = View.VISIBLE
+                        Previous.visibility = View.VISIBLE
                     }
                 }
             }
@@ -151,7 +151,7 @@ class FavoritesActivity : AppCompatActivity() {
             offset+=limit
             loadData()
         }
-        Prevous.setOnClickListener {
+        Previous.setOnClickListener {
             offset -= limit
 
             loadData()
@@ -189,9 +189,9 @@ fun loadData(){
             LoadMore.visibility = View.VISIBLE
         }
         if(offset == 0 ){
-            Prevous.visibility = View.GONE
+            Previous.visibility = View.GONE
         }else{
-            Prevous.visibility = View.VISIBLE
+            Previous.visibility = View.VISIBLE
         }
 
         if (it.isEmpty()) {
