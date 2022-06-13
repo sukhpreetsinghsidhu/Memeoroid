@@ -1,11 +1,18 @@
 package com.example.memeoroid.roomdb
 
+
 import android.content.Context
 import android.graphics.Canvas
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import com.example.memeoroid.R
 
 abstract class OnSwipeRight(context: Context): ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT){
+
+    val deleteColor = ContextCompat.getColor(context, R.color.deleteColor)
+    val deleteIcon = R.drawable.ic_baseline_delete_sweep_24
+
 
     override fun onMove(
         recyclerView: RecyclerView,
@@ -24,6 +31,12 @@ abstract class OnSwipeRight(context: Context): ItemTouchHelper.SimpleCallback(0,
         actionState: Int,
         isCurrentlyActive: Boolean
     ) {
+//        RecyclerViewSwipeDecorator.Builder(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
+//            .addSwipteLeftBackgroundColor(deleteColor)
+//            .addSwipeLeftActionIcon(deleteIcon)
+//            .create()
+//            .decorate()
+
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
     }
 }

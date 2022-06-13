@@ -1,5 +1,7 @@
 package com.example.memeoroid
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_favorites.*
 import kotlinx.android.synthetic.main.activity_surfmemes.*
 import kotlinx.android.synthetic.main.meme_list_item.*
+import java.nio.file.Files.delete
 
 class FavoritesActivity : AppCompatActivity() {
 
@@ -54,10 +57,15 @@ class FavoritesActivity : AppCompatActivity() {
             } else {
                 emptyListText.text = ""
             }
-            if(favoritesList.size<limit){
+            if(favoritesList.size < limit){
                 LoadMore.visibility = View.GONE
             }else{
                 LoadMore.visibility = View.VISIBLE
+            }
+            if(offset == 0 ){
+                Previous.visibility = View.GONE
+            }else{
+                Previous.visibility = View.VISIBLE
             }
         }
 
@@ -75,8 +83,8 @@ class FavoritesActivity : AppCompatActivity() {
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
             ) {
-                vm.deleteFavorite(favoritesList.get(viewHolder.adapterPosition))
-                adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
+                    vm.deleteFavorite(favoritesList.get(viewHolder.adapterPosition))
+                    adapter.deleteSwipedFavorite(viewHolder.adapterPosition)
             }
         }
 
@@ -122,7 +130,7 @@ class FavoritesActivity : AppCompatActivity() {
                     vm.search(searchText, limit, offset)
                     search =true
                 } else {
-                    vm.selectAllFavorites(10,0)
+                    vm.selectAllFavorites(limit,0)
                     search =  false
                 }
                 // necessary to update recycler view after search
@@ -134,7 +142,7 @@ class FavoritesActivity : AppCompatActivity() {
                     } else {
                         emptyListText.text = ""
                     }
-                    if(favoritesList.size <10){
+                    if(favoritesList.size < limit){
                         LoadMore.visibility = View.GONE
                     }else{
                         LoadMore.visibility = View.VISIBLE
@@ -150,12 +158,11 @@ class FavoritesActivity : AppCompatActivity() {
 
         LoadMore.setOnClickListener {
             //Log.d("offset&Limit", "$offset, $limit")
-            offset+=limit
+            offset += limit
             loadData()
         }
         Previous.setOnClickListener {
             offset -= limit
-
             loadData()
         }
 
@@ -185,7 +192,7 @@ fun loadData(){
 
     vm.allFavorites.observe(this){
         getFavorites(it)
-        if(it.size <10){
+        if(it.size < limit){
             LoadMore.visibility = View.GONE
         }else{
             LoadMore.visibility = View.VISIBLE
@@ -195,9 +202,8 @@ fun loadData(){
         }else{
             Previous.visibility = View.VISIBLE
         }
-
         if (it.isEmpty()) {
-            emptyListText.text = "LIST EMPTY"
+            emptyListText.text = "No Memes? (͡๏̯͡๏)"
         } else {
             emptyListText.text = ""
         }
