@@ -3,8 +3,10 @@ package com.example.memeoroid
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import com.example.memeoroid.retrofit.*
 import com.example.memeoroid.roomdb.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -103,7 +105,6 @@ class NewActivity : AppCompatActivity() {
             Toast.makeText(applicationContext,"Loading Custom Meme", Toast.LENGTH_LONG).show()
             startActivity(intent)
         }
-
 
         floatingBtn.setOnClickListener{
             val myIntent = Intent(this, MainActivity::class.java)
