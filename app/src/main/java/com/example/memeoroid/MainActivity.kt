@@ -14,12 +14,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        try{
-            throw RuntimeException("Test")
 
-        }catch (e: Exception){
-            println(e)
-        }
         Timber.d("Opening main")
         //Hides the app title and the system notifications top bar
         supportActionBar?.hide()
