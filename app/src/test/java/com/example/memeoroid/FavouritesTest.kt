@@ -1,6 +1,8 @@
 package com.example.memeoroid
 
+
 import androidx.lifecycle.MutableLiveData
+
 import com.example.memeoroid.retrofit.RetroApiInterface
 import com.example.memeoroid.roomdb.AppDatabase
 import com.example.memeoroid.roomdb.Meme
@@ -31,41 +33,51 @@ class FavouritesTest {
     @Before()
     fun setup(){
         MockitoAnnotations.openMocks(this)
+       // val context = ApplicationProvider.getApplicationContext<Context>()
+//        val db = Room.inMemoryDatabaseBuilder(
+//            context, AppDatabase::class.java).build()
+//        dao = db.memeDao();
+
         repo = MemeRepo(dao)
+
     }
 
     @Test
     fun TestgetallMeme(){
-        val fakeList: List<Meme> = listOf<Meme>(Meme(3,"top", "bottom","img1"))
+        var fakeList: List<Meme> = listOf<Meme>(Meme(3,"top", "bottom","img1"))
 
         // mock the function call to the api
         Mockito.`when`(dao.selectAllFavorites(1,0))
             .thenReturn(MutableLiveData(fakeList))
-        val result = repo.selectAllFavorites(1,0)
+        var result = repo.selectAllFavorites(1,0)
         Assert.assertEquals(fakeList, result?.value)
+
+
     }
 
     @Test
     fun TestselectFavorite(){
-        val fakeList =Meme(45,"top", "bottom","img1")
+        var fakeList =Meme(45,"top", "bottom","img1")
 
         // mock the function call to the api
         Mockito.`when`(dao.selectFavorite(45,1,0))
             .thenReturn(MutableLiveData(fakeList))
-        val result = repo.selectFavorite(45,1,0)
+        var result = repo.selectFavorite(45,1,0)
 
         Assert.assertEquals(fakeList , result?.value )
+
+
     }
 
     //search
     @Test
     fun Testsearch(){
-        val fakeList =listOf<Meme>(Meme(45,"top", "bottom","img1"))
+        var fakeList =listOf<Meme>(Meme(45,"top", "bottom","img1"))
 
         // mock the function call to the api
         Mockito.`when`(dao.search("%to%",1,0))
             .thenReturn(MutableLiveData(fakeList))
-        val result = repo.search("to",1,0)
+        var result = repo.search("to",1,0)
 
         Assert.assertEquals(fakeList , result?.value )
     }
