@@ -107,6 +107,8 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
         //saves the displayed image into the gallery
         saveButton.setOnClickListener{
             savingImageToGallery()
+            val intent = Intent(this, FavoritesActivity::class.java)
+            startActivity(intent)
             Toast.makeText(applicationContext,"Meme Saved to Gallery", Toast.LENGTH_LONG).show()
         }
 

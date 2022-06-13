@@ -1,39 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SurfMemesActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    tools:context=".SurfMemesActivity"
+    android:background="@drawable/create_bottom_layer">
 
     <ImageView
-        android:layout_width="400dp"
+        android:id="@+id/landingImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:contentDescription="TODO"
+        android:scaleType="centerCrop"
+        android:src="@drawable/share_mid_layer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/surfMemesTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/lexend_deca_semibold"
+        android:text="@string/explore"
+        android:textSize="48sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center" >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:backgroundTint="#FF6800"
+            />
+    </RelativeLayout>
+    <ImageView
+        android:id="@+id/memeBackground"
+        android:layout_width="300dp"
         android:layout_height="400dp"
-        android:id="@+id/memeImageView"/>
+        android:background="@drawable/round_rectangle_background"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="8dp"/>
+
+    <ImageView
+        android:id="@+id/memeImageView"
+        android:layout_width="250dp"
+        android:layout_height="333dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="8dp"
+        android:src="@drawable/ic_baseline_cloud_download_24"
+        />
 
     <Button
+        android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/nextButton"
-        android:text="Next Meme"/>
-
-    </LinearLayout>
+        android:layout_marginTop="16dp"
+        android:background="@drawable/custom_button_round"
+        android:fontFamily="@font/raleway_bold"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        android:elevation="8dp"
+        android:text="Next Meme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.894" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_margin="40dp"
-        android:elevation="10dp"
+        android:backgroundTint="@color/orange"
+        app:borderWidth="0dp"
+        android:contentDescription="TODO"
+        android:elevation="8dp"
         android:src="@drawable/ic_baseline_home_24"
-        android:id="@+id/floatingBtn"
-        android:backgroundTint="@color/black"
-        app:tint="@color/orange"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@color/white" />
 
-</RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

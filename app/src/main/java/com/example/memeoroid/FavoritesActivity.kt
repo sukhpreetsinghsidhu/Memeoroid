@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.memeoroid.roomdb.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_favorites.*
+import kotlinx.android.synthetic.main.meme_list_item.*
 
 class FavoritesActivity : AppCompatActivity() {
 
@@ -46,10 +47,16 @@ class FavoritesActivity : AppCompatActivity() {
         // get all favorite memes
         vm.allFavorites.observe(this) { favoritesList ->
             getFavorites(favoritesList)
+            loadingPanel.visibility = View.GONE
             if (favoritesList.isEmpty()) {
                 emptyListText.text = "LIST EMPTY"
             } else {
                 emptyListText.text = ""
+            }
+            if(favoritesList.size<10){
+                LoadMore.visibility = View.GONE
+            }else{
+                LoadMore.visibility = View.VISIBLE
             }
         }
 
@@ -76,12 +83,20 @@ class FavoritesActivity : AppCompatActivity() {
         toLeftTouchHelper.attachToRecyclerView(recyclerView)
 
         //RightSwipe
+        val updateFavoritesActivity = Intent(this, UpdateFavoritesActivity::class.java)
+
+
         val swipeUpdate = object : OnSwipeRight(this){
             override fun onSwiped(
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
-            ) {
-                adapter.deleteSwipedFavorite(viewHolder.adapterPosition) //must change to update/edit, is currently delete
+            ) { updateFavoritesActivity.putExtra("memeId",favoritesList.get(viewHolder.adapterPosition).memeId)
+                updateFavoritesActivity.putExtra("topText",favoritesList.get(viewHolder.adapterPosition).topText)
+                updateFavoritesActivity.putExtra("bottomText",favoritesList.get(viewHolder.adapterPosition).bottomText)
+                updateFavoritesActivity.putExtra("dropdown",favoritesList.get(viewHolder.adapterPosition).image_description)
+                startActivity(updateFavoritesActivity)
+                 //must change to update/edit, is currently delete
+
             }
         }
 
@@ -178,6 +193,12 @@ fun loadData(){
             Prevous.visibility = View.GONE
         }else{
             Prevous.visibility = View.VISIBLE
+        }
+
+        if (it.isEmpty()) {
+            emptyListText.text = "LIST EMPTY"
+        } else {
+            emptyListText.text = ""
         }
     }
 }
