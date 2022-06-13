@@ -33,6 +33,7 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
     //variables to fetch the user input values to add to the image
     private lateinit var topText : String
     private lateinit var bottomText : String
+    private var memeId : Int = 0
 
     //variable to access the api to fetch the selected image
     private lateinit var vm: ApiViewModel
@@ -66,7 +67,7 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
         //fetching the user input text from the previous activity page
         topText = intent.getStringExtra("topText").toString()
         bottomText = intent.getStringExtra("bottomText").toString()
-
+        memeId = intent.getIntExtra("memeId", 0)
 
         //variable to access the api json object to fetch the image
         val inter = RetroApiInterface.create()
@@ -96,12 +97,6 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
 
                     }
                 })
-
-
-                        //println(imageView)
-            //println(urls)
-            //generating a meme to be displayed
-            //generateMemeText(imageView)
         }
 
         //saves the displayed image into the gallery
@@ -118,6 +113,7 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
             intent.putExtra("topText",topText)
             intent.putExtra("bottomText",bottomText)
             intent.putExtra("dropdown",imageSelected)
+            intent.putExtra("memeId",memeId)
             startActivity(intent)
             Toast.makeText(applicationContext,"Redirecting to Edit page", Toast.LENGTH_LONG).show()
         }

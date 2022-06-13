@@ -13,11 +13,16 @@ class DbViewModel(app: Application) : AndroidViewModel(app) {
     private val repo: MemeRepo
     var allFavorites : LiveData<List<Meme>>
     lateinit var favoriteById : LiveData<Meme>
+    val limit = 5
 
     init {
         val dao = AppDatabase.getInstance(app)?.memeDao()
         repo = MemeRepo(dao!!)
+<<<<<<< HEAD
         allFavorites = repo.selectAllFavorites(5,0)!!
+=======
+        allFavorites = repo.selectAllFavorites(limit,0)!!
+>>>>>>> 58c26a82b062aa21c680a408afc9ac8db9d4345f
     }
 
     // Create

@@ -81,6 +81,7 @@
         android:fontFamily="@font/raleway_semi_bold"
         android:hint="@string/top_text"
         android:inputType="textPersonName"
+        android:gravity="center"
         android:maxLength="50"
         android:maxLines="2"
         android:padding="10dp"
@@ -114,7 +115,8 @@
         android:backgroundTint="@color/gray"
         android:ems="10"
         android:fontFamily="@font/raleway_semi_bold"
-        android:hint="@string/bottom_text"
+        android:hint="Bottom Text..."
+        android:gravity="center"
         android:inputType="textPersonName"
         android:lines="2"
         android:maxLength="50"
@@ -168,6 +170,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/white" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

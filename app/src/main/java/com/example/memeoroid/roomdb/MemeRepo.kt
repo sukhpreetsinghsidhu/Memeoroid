@@ -6,8 +6,7 @@ import androidx.lifecycle.LiveData
 // DB Data Repository
 // Near identical to the DAO
 // Like the DbViewModel, its job is to separate the data from the UI
-class MemeRepo(var dao : MemeDao ){ //context: Context) {
-    //var db:MemeDao? = AppDatabase.getInstance(context)?.memeDao()
+class MemeRepo(var dao : MemeDao ){
 
     // Create
     fun insertFavorite(meme: Meme) {
