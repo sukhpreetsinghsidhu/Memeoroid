@@ -37,15 +37,15 @@ import retrofit2.Response
 * */
 @RunWith(JUnit4::class)
 class ApiViewModelTest {
-
+//Mock the needed clases
     @Mock
     lateinit var dao: MemeDao
 
     @Mock
     lateinit var inter: RetroApiInterface
 
-    @Mock
-    lateinit var AppDatabase : AppDatabase
+    /*@Mock
+    lateinit var AppDatabase : AppDatabase*/
     @Mock
     lateinit var repo : MemeRepo
 
@@ -63,21 +63,6 @@ class ApiViewModelTest {
 
     }
 
-   /* @Test
-    fun getTemplateList() {
-    }
-
-    @Test
-    fun setTemplateList() {
-    }
-
-    @Test
-    fun getJob() {
-    }
-
-    @Test
-    fun setJob() {
-    }*/
 
     @Test
     fun getAllTemplates() {
