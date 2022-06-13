@@ -112,11 +112,14 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
             Toast.makeText(applicationContext,"Meme Saved to Gallery", Toast.LENGTH_LONG).show()
         }
 
-        //redirect back to create meme page                    ******************** need to rename the button id in the xml
-        favoritesButton.setOnClickListener{
-            val intent = Intent(this, NewActivity::class.java)
+        //redirect back to create meme page
+        editButton.setOnClickListener{
+            val intent = Intent(this, UpdateFavoritesActivity::class.java)
+            intent.putExtra("topText",topText)
+            intent.putExtra("bottomText",bottomText)
+            intent.putExtra("dropdown",imageSelected)
             startActivity(intent)
-            Toast.makeText(applicationContext,"Redirecting Back to Create Meme", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext,"Redirecting to Edit page", Toast.LENGTH_LONG).show()
         }
 
         floatingBtn.setOnClickListener{
