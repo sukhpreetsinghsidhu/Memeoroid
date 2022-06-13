@@ -82,6 +82,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -93,8 +94,42 @@
                 tools:itemCount="5"
                 tools:listitem="@layout/meme_list_item" />
 
-        </LinearLayout>
-    </ScrollView>
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Previous"
+                        android:id="@+id/Prevous"
+                        android:layout_margin="10dp"
+                        android:visibility="gone"
+                        android:background="@drawable/custom_button_round"
+                        android:fontFamily="@font/raleway_bold"
+                        android:textColor="@color/black"
+                        app:backgroundTint="@color/white"
+                        />
+
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/loadingPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/orange"
+        android:gravity="center"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/emptyListText"
@@ -160,6 +195,8 @@
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/floatingBtn" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

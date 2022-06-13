@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.memeoroid.roomdb.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_favorites.*
+import kotlinx.android.synthetic.main.activity_surfmemes.*
 import kotlinx.android.synthetic.main.meme_list_item.*
 
 class FavoritesActivity : AppCompatActivity() {
@@ -47,6 +48,7 @@ class FavoritesActivity : AppCompatActivity() {
         // get all favorite memes
         vm.allFavorites.observe(this) { favoritesList ->
             getFavorites(favoritesList)
+            loadingPanel.visibility = View.GONE
             if (favoritesList.isEmpty()) {
                 emptyListText.text = "LIST EMPTY"
             } else {

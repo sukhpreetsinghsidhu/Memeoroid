@@ -12,7 +12,9 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_favorites.*
 import kotlinx.android.synthetic.main.activity_surfmemes.*
+import kotlinx.coroutines.delay
 
 //Browse Randoms memes from the internet
 class SurfMemesActivity : AppCompatActivity() {
@@ -28,10 +30,12 @@ class SurfMemesActivity : AppCompatActivity() {
         supportActionBar?.hide()
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
 
+
         //Floating button redirects to the home page
         val floatingBtn : FloatingActionButton = findViewById(R.id.floatingBtn)
 
         memeImageView = findViewById(R.id.memeImageView)
+
 
         //Function loads new meme on page creation
         loadNewMeme()
@@ -47,21 +51,22 @@ class SurfMemesActivity : AppCompatActivity() {
             startActivity(myIntent)
             Toast.makeText(applicationContext,"Redirecting to Home Page", Toast.LENGTH_LONG).show()
         }
+
     }
 
     //function to load a new image into the imageview
     //Uses Volley to fetch and load images
     //Volley because it has inbuilt support for images and this page is only to fetch and display images
     private fun loadNewMeme(){
-        val queue = Volley.newRequestQueue(this)
+         val queue = Volley.newRequestQueue(this)
         val url = "https://meme-api.herokuapp.com/gimme"
         var currentImageURL : String?
-
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url,null,
             Response.Listener{ response -> currentImageURL = response.getString("url")
             Picasso.with(this@SurfMemesActivity).load(currentImageURL).into(memeImageView)},
             Response.ErrorListener {
             Toast.makeText(this,"Something went wrong", Toast.LENGTH_LONG).show() })
+        loadingBar.visibility = View.GONE
         queue.add(jsonObjectRequest)
     }
 }

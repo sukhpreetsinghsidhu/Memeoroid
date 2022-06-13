@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SurfMemesActivity"
-    android:background="@drawable/create_bottom_layer">
+    android:background="@drawable/create_bottom_layer"
+    tools:context=".SurfMemesActivity">
 
     <ImageView
         android:id="@+id/landingImage"
@@ -27,12 +27,11 @@
         android:layout_marginTop="15dp"
         android:fontFamily="@font/lexend_deca_semibold"
         android:text="@string/explore"
-        android:textSize="48sp"
         android:textColor="@color/black"
+        android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ImageView
@@ -40,22 +39,38 @@
         android:layout_width="300dp"
         android:layout_height="400dp"
         android:background="@drawable/round_rectangle_background"
+        android:elevation="8dp"
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:elevation="8dp"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/loadingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/orange"
+        android:gravity="center"
+        android:elevation="16dp"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/orange"
+        android:indeterminateTintMode="src_atop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/memeImageView"
         android:layout_width="250dp"
         android:layout_height="333dp"
+        android:backgroundTint="@color/orange"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:elevation="8dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/nextButton"
@@ -63,11 +78,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/custom_button_round"
+        android:elevation="8dp"
         android:fontFamily="@font/raleway_bold"
+        android:text="Next Meme"
         android:textColor="@color/black"
         app:backgroundTint="@color/white"
-        android:elevation="8dp"
-        android:text="Next Meme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,10 +97,10 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="40dp"
         android:backgroundTint="@color/orange"
-        app:borderWidth="0dp"
         android:contentDescription="TODO"
         android:elevation="8dp"
         android:src="@drawable/ic_baseline_home_24"
+        app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:tint="@color/white" />
