@@ -13,7 +13,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        try{
+            throw RuntimeException("Test")
 
+        }catch (e: Exception){
+            println(e)
+        }
         //Hides the app title and the system notifications top bar
         supportActionBar?.hide()
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
