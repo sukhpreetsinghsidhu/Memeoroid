@@ -97,12 +97,6 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
 
                     }
                 })
-
-
-                        //println(imageView)
-            //println(urls)
-            //generating a meme to be displayed
-            //generateMemeText(imageView)
         }
 
         //saves the displayed image into the gallery
