@@ -41,12 +41,6 @@ class FavoritesActivity : AppCompatActivity() {
         // initialize db viewmodel
         vm = DbViewModel(application)
 
-
-        // tests for CRUD operations
-//        vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
-//        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
-//        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
-
         // get all favorite memes
         vm.allFavorites.observe(this) { favoritesList ->
             getFavorites(favoritesList)
@@ -77,7 +71,7 @@ class FavoritesActivity : AppCompatActivity() {
         // create adapter with data source and assign adapter
         adapter = ListAdapter(favoritesList)
         recyclerView.adapter = adapter
-//DAB CODE
+        //DAB CODE
         //LeftSwipe
         val swipeDelete = object : OnSwipeLeft(this){
             override fun onSwiped(
@@ -117,13 +111,12 @@ class FavoritesActivity : AppCompatActivity() {
                 updateFavoritesActivity.putExtra("dropdown",favoritesList.get(viewHolder.adapterPosition).image_description)
                 startActivity(updateFavoritesActivity)
                  //must change to update/edit, is currently delete
-
             }
         }
 
         val toRightTouchHelper = ItemTouchHelper(swipeUpdate)
         toRightTouchHelper.attachToRecyclerView(recyclerView)
-//DAB CODE END
+        //DAB CODE END
         //search bar functionality
         searchBar.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -193,7 +186,6 @@ class FavoritesActivity : AppCompatActivity() {
 
     }
 fun loadData(){
-    // Log.d("offset&Limit 2", "$offset, $limit")
 
     if(search){
         var searchText = searchBar.text.toString()

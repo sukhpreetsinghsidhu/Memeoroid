@@ -25,7 +25,6 @@ class UpdateFavoritesActivity : AppCompatActivity() {
     //variables to collect user input text to add to meme
      lateinit var topText : EditText
      lateinit var bottomText : EditText
- //    lateinit var memeId
 
     //variable to pass the id of the image selected to the next page to generate and display the custom meme
     lateinit var imageSelected : String
@@ -44,16 +43,13 @@ class UpdateFavoritesActivity : AppCompatActivity() {
 
         topText = findViewById(R.id.editTopText)
         bottomText = findViewById(R.id.editBottomText)
-  //      memeId =
 
         imageSelected = intent.getStringExtra("dropdown")!!
         topText.setText(intent.getStringExtra("topText"))
         bottomText.setText(intent.getStringExtra("bottomText"))
 
-
         dbvm = DbViewModel(application)
 
-        //Till line 70 retrofit -> need to comment ********************************
         val inter = RetroApiInterface.create()
         val repo = TemplateRepo(inter)
         vm = ApiViewModel(repo)
@@ -73,8 +69,6 @@ class UpdateFavoritesActivity : AppCompatActivity() {
                                              position: Int, id: Long){
                     //assigning image id to a variable to pass to the next page
                     // to fetch and display image on that page
-                    //imageSelected = position.toString()
-                    //imageDesc = descriptions[position]
                     Picasso.with(this@UpdateFavoritesActivity).load(urls[position]).into(imageView)
                 }
 
@@ -113,7 +107,6 @@ class UpdateFavoritesActivity : AppCompatActivity() {
             Toast.makeText(applicationContext,"Loading Custom Meme", Toast.LENGTH_LONG).show()
             startActivity(intent)
         }
-
 
         floatingBtn.setOnClickListener{
             val myIntent = Intent(this, MainActivity::class.java)

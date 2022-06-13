@@ -1,6 +1,5 @@
 package com.example.memeoroid
 
-import android.accounts.AccountManager.get
 import android.content.Intent
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
@@ -9,7 +8,6 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
@@ -22,7 +20,7 @@ import com.example.memeoroid.retrofit.TemplateRepo
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_custom_meme_display.*
-import java.lang.reflect.Array.get
+import kotlin.properties.Delegates
 
 //This activity page displays the curated meme from the new meme page
 //Top and bottom text are fetched along with the selected image id
@@ -33,6 +31,7 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
     //variables to fetch the user input values to add to the image
     private lateinit var topText : String
     private lateinit var bottomText : String
+    private lateinit var memeId : String
 
     //variable to access the api to fetch the selected image
     private lateinit var vm: ApiViewModel
@@ -76,32 +75,20 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
         vm.getAllTemplates()
 
         vm.templateList.observe(this) { for (item in it) { urls.add(item.image) }
-
             //using picasso to load image from the api into the image view component
             //picasso is a library used to load images from an external source
-            //Picasso.with(this@CustomMemeDisplayActivity).load(urls[imageSelected?.toInt()!!]).into(imageView)
             Picasso.with(this@CustomMemeDisplayActivity)
                 .load(urls[imageSelected?.toInt()!!])
                 .into(object: com.squareup.picasso.Target {
                     override fun onPrepareLoad(placeHolderDrawable: Drawable?) {
-
                     }
-
                     override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
                         imageView.setImageBitmap(bitmap)
                         generateMemeText(imageView)
                     }
-
                     override fun onBitmapFailed(errorDrawable: Drawable?) {
-
                     }
                 })
-
-
-                        //println(imageView)
-            //println(urls)
-            //generating a meme to be displayed
-            //generateMemeText(imageView)
         }
 
         //saves the displayed image into the gallery
@@ -112,9 +99,10 @@ class CustomMemeDisplayActivity : AppCompatActivity() {
             Toast.makeText(applicationContext,"Meme Saved to Gallery", Toast.LENGTH_LONG).show()
         }
 
-        //redirect back to create meme page
+        //redirect back to update meme page
         editButton.setOnClickListener{
             val intent = Intent(this, UpdateFavoritesActivity::class.java)
+            //intent.putExtra("memeId",memeId)
             intent.putExtra("topText",topText)
             intent.putExtra("bottomText",bottomText)
             intent.putExtra("dropdown",imageSelected)

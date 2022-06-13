@@ -16,7 +16,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_custom_meme_display.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_favorites.xml" value="0.24166666666666667" />
-        <entry key="app/src/main/res/layout/activity_gallery.xml" value="0.24166666666666667" />
+        <entry key="app/src/main/res/layout/activity_gallery.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2576416015625" />
         <entry key="app/src/main/res/layout/activity_new.xml" value="0.2891632080078125" />
         <entry key="app/src/main/res/layout/activity_surfmemes.xml" value="0.1" />

@@ -1,9 +1,6 @@
 package com.example.memeoroid
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
 import com.example.memeoroid.retrofit.RetroApiInterface
 import com.example.memeoroid.roomdb.AppDatabase
 import com.example.memeoroid.roomdb.Meme
@@ -34,51 +31,41 @@ class FavouritesTest {
     @Before()
     fun setup(){
         MockitoAnnotations.openMocks(this)
-       // val context = ApplicationProvider.getApplicationContext<Context>()
-//        val db = Room.inMemoryDatabaseBuilder(
-//            context, AppDatabase::class.java).build()
-//        dao = db.memeDao();
-
         repo = MemeRepo(dao)
-
     }
 
     @Test
     fun TestgetallMeme(){
-        var fakeList: List<Meme> = listOf<Meme>(Meme(3,"top", "bottom","img1"))
+        val fakeList: List<Meme> = listOf<Meme>(Meme(3,"top", "bottom","img1"))
 
         // mock the function call to the api
         Mockito.`when`(dao.selectAllFavorites(1,0))
             .thenReturn(MutableLiveData(fakeList))
-        var result = repo.selectAllFavorites(1,0)
-        Assert.assertEquals(result?.value ,fakeList)
-
-
+        val result = repo.selectAllFavorites(1,0)
+        Assert.assertEquals(fakeList, result?.value)
     }
 
     @Test
     fun TestselectFavorite(){
-        var fakeList =Meme(45,"top", "bottom","img1")
+        val fakeList =Meme(45,"top", "bottom","img1")
 
         // mock the function call to the api
         Mockito.`when`(dao.selectFavorite(45,1,0))
             .thenReturn(MutableLiveData(fakeList))
-        var result = repo.selectFavorite(45,1,0)
+        val result = repo.selectFavorite(45,1,0)
 
         Assert.assertEquals(fakeList , result?.value )
-
-
     }
 
     //search
     @Test
     fun Testsearch(){
-        var fakeList =listOf<Meme>(Meme(45,"top", "bottom","img1"))
+        val fakeList =listOf<Meme>(Meme(45,"top", "bottom","img1"))
 
         // mock the function call to the api
         Mockito.`when`(dao.search("%to%",1,0))
             .thenReturn(MutableLiveData(fakeList))
-        var result = repo.search("to",1,0)
+        val result = repo.search("to",1,0)
 
         Assert.assertEquals(fakeList , result?.value )
     }
