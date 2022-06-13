@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
+import timber.log.Timber
 
 //Home Page/ Main Activity page
 //Navigates to the different functionalities and pages of the app
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         }catch (e: Exception){
             println(e)
         }
+        Timber.d("Opening main")
         //Hides the app title and the system notifications top bar
         supportActionBar?.hide()
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
