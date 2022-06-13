@@ -47,6 +47,7 @@ class FavoritesActivity : AppCompatActivity() {
         // get all favorite memes
         vm.allFavorites.observe(this) { favoritesList ->
             getFavorites(favoritesList)
+            loadingPanel.visibility = View.GONE
             if (favoritesList.isEmpty()) {
                 emptyListText.text = "LIST EMPTY"
             } else {

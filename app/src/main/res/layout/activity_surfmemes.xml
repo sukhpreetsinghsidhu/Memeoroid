@@ -34,7 +34,19 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
+    <RelativeLayout
+        android:id="@+id/loadingPanel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center" >
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:backgroundTint="#FF6800"
+            />
+    </RelativeLayout>
     <ImageView
         android:id="@+id/memeBackground"
         android:layout_width="300dp"
@@ -55,7 +67,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:elevation="8dp" />
+        android:elevation="8dp"
+        android:src="@drawable/ic_baseline_cloud_download_24"
+        />
 
     <Button
         android:id="@+id/nextButton"
