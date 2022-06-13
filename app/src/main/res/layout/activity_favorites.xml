@@ -5,21 +5,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FavoritesActivity"
     android:background="@drawable/search_bottom_layer"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".FavoritesActivity">
 
     <ImageView
         android:id="@+id/landingImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:contentDescription="TODO"
         android:scaleType="fitXY"
         android:src="@drawable/search_mid_layer"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="TODO" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/favoritesTitle"
@@ -32,14 +32,14 @@
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/searchBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
         android:layout_marginTop="114dp"
+        android:layout_marginEnd="52dp"
         android:layout_marginBottom="15dp"
         android:layout_weight="1"
         android:background="@drawable/round_rectangle_background"
@@ -61,49 +61,40 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        app:borderWidth="0dp"
         android:layout_marginTop="111dp"
         android:layout_marginEnd="20dp"
         android:backgroundTint="@color/orange"
         android:contentDescription="TODO"
         android:elevation="8dp"
         android:src="@drawable/ic_baseline_add_24"
+        app:borderWidth="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/white" />
 
     <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="200dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:orientation="vertical">
 
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <RelativeLayout
-                    android:id="@+id/loadingPanel"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center" >
+                tools:itemCount="5"
+                tools:listitem="@layout/meme_list_item" />
 
-                    <ProgressBar
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:indeterminate="true"
-                        android:backgroundTint="#FF6800"
-                        />
-                </RelativeLayout>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    tools:itemCount="5"
-                    tools:listitem="@layout/meme_list_item"/>
-                <LinearLayout
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
@@ -121,38 +112,42 @@
                         android:textColor="@color/black"
                         app:backgroundTint="@color/white"
                         />
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Load More"
-                        android:id="@+id/LoadMore"
-                        android:layout_margin="10dp"
-                        android:background="@drawable/custom_button_round"
-                        android:fontFamily="@font/raleway_bold"
-                        android:textColor="@color/black"
-                        app:backgroundTint="@color/white"
-                        />
+
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/loadingPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/orange"
+        android:gravity="center"
+        android:indeterminate="true"
+        android:indeterminateTintMode="src_atop"
+        android:indeterminateTint="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/emptyListText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:layout_margin="100dp"
-        android:fontFamily="@font/raleway_semi_bold"
         android:background="@drawable/sharper_corners"
         android:backgroundTint="@color/white"
-        android:textAlignment="center"
         android:elevation="8dp"
-        android:textColor="@color/black"
+        android:fontFamily="@font/raleway_semi_bold"
+        android:text=""
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingBtn"
@@ -161,15 +156,48 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="40dp"
-        android:backgroundTint="@color/orange"
         android:background="@drawable/custom_button_round"
+        android:backgroundTint="@color/orange"
         android:contentDescription="TODO"
         android:elevation="8dp"
-        app:borderWidth="0dp"
         android:src="@drawable/ic_baseline_home_24"
+        app:borderWidth="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white"/>
+        app:tint="@color/white" />
+
+    <Button
+        android:id="@+id/Previous"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="43dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/custom_button_round"
+        android:elevation="8dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="Previous"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/LoadMore" />
+
+    <Button
+        android:id="@+id/LoadMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="43dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/custom_button_round"
+        android:elevation="8dp"
+        android:fontFamily="@font/raleway_bold"
+        android:text="Load More"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/floatingBtn" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
