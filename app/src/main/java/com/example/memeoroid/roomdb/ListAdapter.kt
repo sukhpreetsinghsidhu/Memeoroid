@@ -62,6 +62,7 @@ class ListAdapter(private val favoriteList: MutableList<Meme>): RecyclerView.Ada
             intent.putExtra("imageSelected",itemVM.image_description)
             intent.putExtra("topText",itemVM.topText)
             intent.putExtra("bottomText",itemVM.bottomText)
+            intent.putExtra("memeId",itemVM.memeId)
             context.startActivity(intent)
         }
     }

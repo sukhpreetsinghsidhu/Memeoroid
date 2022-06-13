@@ -1,9 +1,8 @@
 package com.example.memeoroid
 
-import android.content.Context
+
 import androidx.lifecycle.MutableLiveData
-import androidx.room.Room
-import androidx.test.core.app.ApplicationProvider
+
 import com.example.memeoroid.retrofit.RetroApiInterface
 import com.example.memeoroid.roomdb.AppDatabase
 import com.example.memeoroid.roomdb.Meme
@@ -51,7 +50,7 @@ class FavouritesTest {
         Mockito.`when`(dao.selectAllFavorites(1,0))
             .thenReturn(MutableLiveData(fakeList))
         var result = repo.selectAllFavorites(1,0)
-        Assert.assertEquals(result?.value ,fakeList)
+        Assert.assertEquals(fakeList, result?.value)
 
 
     }
