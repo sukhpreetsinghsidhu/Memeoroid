@@ -58,8 +58,15 @@ class FavoritesActivity : AppCompatActivity() {
             }
             if(favoritesList.size<limit){
                 LoadMore.visibility = View.GONE
-            }else{
+            }
+            else{
                 LoadMore.visibility = View.VISIBLE
+            }
+
+            if(offset == 0 ){
+                Previous.visibility = View.GONE
+            }else{
+                Previous.visibility = View.VISIBLE
             }
         }
 
@@ -147,7 +154,7 @@ class FavoritesActivity : AppCompatActivity() {
                     } else {
                         emptyListText.text = ""
                     }
-                    if(favoritesList.size <10){
+                    if(favoritesList.size <limit){
                         LoadMore.visibility = View.GONE
                     }else{
                         LoadMore.visibility = View.VISIBLE
@@ -168,8 +175,8 @@ class FavoritesActivity : AppCompatActivity() {
         }
         Previous.setOnClickListener {
             offset -= limit
-
             loadData()
+
         }
 
         addButton.setOnClickListener {
@@ -195,20 +202,19 @@ fun loadData(){
         vm.selectAllFavorites(limit,offset)
     }
 
-
     vm.allFavorites.observe(this){
         getFavorites(it)
-        if(it.size <10){
+        if(it.size <limit){
             LoadMore.visibility = View.GONE
         }else{
             LoadMore.visibility = View.VISIBLE
         }
         if(offset == 0 ){
             Previous.visibility = View.GONE
+
         }else{
             Previous.visibility = View.VISIBLE
         }
-
         if (it.isEmpty()) {
             emptyListText.text = "LIST EMPTY"
         } else {
