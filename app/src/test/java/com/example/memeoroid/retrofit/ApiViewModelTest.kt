@@ -44,23 +44,17 @@ class ApiViewModelTest {
     @Mock
     lateinit var inter: RetroApiInterface
 
-    /*@Mock
-    lateinit var AppDatabase : AppDatabase*/
     @Mock
     lateinit var repo : MemeRepo
 
     @Mock
     lateinit var templateRepo: TemplateRepo
 
-
-
     @Before
     fun setup(){
         MockitoAnnotations.openMocks(this)
         repo = MemeRepo(dao)
         templateRepo = TemplateRepo(inter)
-
-
     }
 
 
@@ -84,8 +78,4 @@ class ApiViewModelTest {
 
         }
     }
-
-    /*@Test
-    fun getRepo() {
-    }*/
 }

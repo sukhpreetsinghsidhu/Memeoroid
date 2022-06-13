@@ -47,7 +47,7 @@ class NewActivity : AppCompatActivity() {
 
         dbvm = DbViewModel(application)
 
-        //Till line 70 retrofit -> need to comment ********************************
+        //Till line 70 retrofit
         val inter = RetroApiInterface.create()
         val repo = TemplateRepo(inter)
         vm = ApiViewModel(repo)

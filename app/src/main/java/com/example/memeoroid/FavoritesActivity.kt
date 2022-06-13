@@ -36,12 +36,6 @@ class FavoritesActivity : AppCompatActivity() {
         // initialize db viewmodel
         vm = DbViewModel(application)
 
-
-        // tests for CRUD operations
-//        vm.insertFavorite(Meme(null, "Top1", "Bottom1", "Drake Hotline Bling"))
-//        vm.insertFavorite(Meme(null, "Top2", "Bottom2", "Drake Hotline Bling"))
-//        vm.insertFavorite(Meme(null, "Top3", "Bottom3", "Drake Hotline Bling"))
-
         // get all favorite memes
         vm.allFavorites.observe(this) { favoritesList ->
             getFavorites(favoritesList)
@@ -53,9 +47,11 @@ class FavoritesActivity : AppCompatActivity() {
             }
             if(favoritesList.size < limit){
                 LoadMore.visibility = View.GONE
-            }else{
+            }
+            else{
                 LoadMore.visibility = View.VISIBLE
             }
+
             if(offset == 0 ){
                 Previous.visibility = View.GONE
             }else{
@@ -70,7 +66,7 @@ class FavoritesActivity : AppCompatActivity() {
         // create adapter with data source and assign adapter
         adapter = ListAdapter(favoritesList)
         recyclerView.adapter = adapter
-//DAB CODE
+        //DAB CODE
         //LeftSwipe
         val swipeDelete = object : OnSwipeLeft(this){
             override fun onSwiped(
@@ -110,13 +106,12 @@ class FavoritesActivity : AppCompatActivity() {
                 updateFavoritesActivity.putExtra("dropdown",favoritesList.get(viewHolder.adapterPosition).image_description)
                 startActivity(updateFavoritesActivity)
                  //must change to update/edit, is currently delete
-
             }
         }
 
         val toRightTouchHelper = ItemTouchHelper(swipeUpdate)
         toRightTouchHelper.attachToRecyclerView(recyclerView)
-//DAB CODE END
+        //DAB CODE END
         //search bar functionality
         searchBar.addTextChangedListener(object: TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -147,7 +142,9 @@ class FavoritesActivity : AppCompatActivity() {
                     } else {
                         emptyListText.text = ""
                     }
+
                     if(favoritesList.size < limit){
+
                         LoadMore.visibility = View.GONE
                     }else{
                         LoadMore.visibility = View.VISIBLE
@@ -169,6 +166,7 @@ class FavoritesActivity : AppCompatActivity() {
         Previous.setOnClickListener {
             offset -= limit
             loadData()
+
         }
 
         addButton.setOnClickListener {
@@ -185,7 +183,6 @@ class FavoritesActivity : AppCompatActivity() {
 
     }
 fun loadData(){
-    // Log.d("offset&Limit 2", "$offset, $limit")
 
     if(search){
         var searchText = searchBar.text.toString()
@@ -194,16 +191,18 @@ fun loadData(){
         vm.selectAllFavorites(limit,offset)
     }
 
-
     vm.allFavorites.observe(this){
         getFavorites(it)
+
         if(it.size < limit){
+
             LoadMore.visibility = View.GONE
         }else{
             LoadMore.visibility = View.VISIBLE
         }
         if(offset == 0 ){
             Previous.visibility = View.GONE
+
         }else{
             Previous.visibility = View.VISIBLE
         }
