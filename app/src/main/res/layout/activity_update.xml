@@ -48,9 +48,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/lexend_deca_semibold"
-        android:text="Not Funny?"
+        android:text="@string/not_funny"
         android:textColor="@color/black"
-        android:textSize="48sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -62,7 +62,7 @@
         android:layout_marginTop="132dp"
         android:background="@drawable/sharper_corners"
         android:backgroundTint="@color/darkGrey"
-        android:contentDescription="Meme Description"
+        android:contentDescription="@string/meme_description"
         android:drawableEnd="@drawable/ic_baseline_arrow_drop_down_24"
         android:minHeight="50dp"
         android:spinnerMode="dropdown"
@@ -79,8 +79,11 @@
         android:backgroundTint="@color/gray"
         android:ems="10"
         android:fontFamily="@font/raleway_semi_bold"
-        android:hint="Top Text..."
+
+        android:hint="@string/top_text"
+
         android:gravity="center"
+
         android:inputType="textPersonName"
         android:maxLength="50"
         android:maxLines="2"
@@ -115,8 +118,11 @@
         android:backgroundTint="@color/gray"
         android:ems="10"
         android:fontFamily="@font/raleway_semi_bold"
-        android:hint="Bottom Text..."
+
+        android:hint="@string/bottom_text"
+
         android:gravity="center"
+
         android:inputType="textPersonName"
         android:lines="2"
         android:maxLength="50"
@@ -136,7 +142,7 @@
         android:background="@drawable/custom_button_round"
         android:elevation="8dp"
         android:fontFamily="@font/raleway_bold"
-        android:text="update"
+        android:text="@string/update"
         android:textColor="@color/black"
         app:backgroundTint="@color/beige"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -150,7 +156,7 @@
         android:background="@drawable/custom_button_round"
         android:elevation="8dp"
         android:fontFamily="@font/raleway_bold"
-        android:text="cancel"
+        android:text="@string/cancel"
         android:textColor="@color/black"
         app:backgroundTint="@color/beige"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -165,7 +171,6 @@
         android:layout_margin="40dp"
         android:backgroundTint="@color/orange"
         app:borderWidth="0dp"
-        android:contentDescription="TODO"
         android:elevation="8dp"
         android:src="@drawable/ic_baseline_home_24"
         app:layout_constraintBottom_toBottomOf="parent"

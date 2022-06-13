@@ -11,4 +11,6 @@
     <color name="beige">#F1E0D1</color>
     <color name="gray">#F8F8F8</color>
     <color name="darkGrey">#BDBDBD</color>
+    <color name="deleteColor">#E91E63</color>
+    <color name="updateColor">#4CAF50</color>
 </resources>

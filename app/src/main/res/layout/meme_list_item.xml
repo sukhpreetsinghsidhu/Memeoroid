@@ -11,8 +11,8 @@
         android:layout_height="150dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="5dp"
-        app:cardUseCompatPadding="true"
         app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
                 android:fontFamily="@font/raleway_semi_bold"
                 android:padding="6dp"
                 android:singleLine="true"
-                android:text="TopText"
+                android:text="@string/toptext"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
@@ -73,7 +73,7 @@
                 android:fontFamily="@font/raleway_semi_bold"
                 android:padding="6dp"
                 android:singleLine="true"
-                android:text="BottomText"
+                android:text="@string/bottomtext"
                 android:textColor="@color/darkGrey"
                 android:textSize="20sp" />
         </RelativeLayout>

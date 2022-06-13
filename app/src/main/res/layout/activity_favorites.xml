@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/lexend_deca_semibold"
-        android:text="Favorites"
+        android:text="@string/favorites"
         android:textColor="@color/black"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
         android:drawableLeft="@drawable/ic_baseline_search_24"
         android:elevation="8dp"
         android:ems="10"
-        android:hint="Search..."
+        android:hint="@string/search"
         android:inputType="textPersonName"
         android:minHeight="50dp"
         android:padding="5dp"
@@ -94,6 +94,7 @@
                 tools:itemCount="5"
                 tools:listitem="@layout/meme_list_item" />
 
+
             <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -113,6 +114,7 @@
                         app:backgroundTint="@color/white" />
 
                 </LinearLayout>
+
 
             </LinearLayout>
 
@@ -159,7 +161,6 @@
         android:layout_margin="40dp"
         android:background="@drawable/custom_button_round"
         android:backgroundTint="@color/orange"
-        android:contentDescription="TODO"
         android:elevation="8dp"
         android:src="@drawable/ic_baseline_home_24"
         app:borderWidth="0dp"

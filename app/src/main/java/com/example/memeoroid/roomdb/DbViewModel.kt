@@ -18,7 +18,9 @@ class DbViewModel(app: Application) : AndroidViewModel(app) {
     init {
         val dao = AppDatabase.getInstance(app)?.memeDao()
         repo = MemeRepo(dao!!)
+
         allFavorites = repo.selectAllFavorites(limit,0)!!
+
     }
 
     // Create
