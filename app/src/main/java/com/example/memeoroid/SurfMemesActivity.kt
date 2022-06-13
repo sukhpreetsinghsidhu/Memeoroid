@@ -3,6 +3,7 @@ package com.example.memeoroid
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.SystemClock.sleep
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -39,7 +40,6 @@ class SurfMemesActivity : AppCompatActivity() {
 
         //Function loads new meme on page creation
         loadNewMeme()
-
         //Button listener to load a new meme on click
         nextButton.setOnClickListener{
             loadNewMeme()
@@ -58,15 +58,17 @@ class SurfMemesActivity : AppCompatActivity() {
     //Uses Volley to fetch and load images
     //Volley because it has inbuilt support for images and this page is only to fetch and display images
     private fun loadNewMeme(){
+        loadingBar.visibility = View.VISIBLE
          val queue = Volley.newRequestQueue(this)
         val url = "https://meme-api.herokuapp.com/gimme"
         var currentImageURL : String?
         val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url,null,
             Response.Listener{ response -> currentImageURL = response.getString("url")
+                loadingBar.visibility = View.GONE
             Picasso.with(this@SurfMemesActivity).load(currentImageURL).into(memeImageView)},
             Response.ErrorListener {
+                loadingBar.visibility = View.GONE
             Toast.makeText(this,"Something went wrong", Toast.LENGTH_LONG).show() })
-        loadingBar.visibility = View.GONE
         queue.add(jsonObjectRequest)
     }
 }

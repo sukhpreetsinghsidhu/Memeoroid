@@ -33,7 +33,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <ImageView
         android:id="@+id/memeBackground"
         android:layout_width="300dp"
@@ -53,6 +52,7 @@
         android:backgroundTint="@color/orange"
         android:gravity="center"
         android:elevation="16dp"
+        android:visibility="gone"
         android:indeterminate="true"
         android:indeterminateTint="@color/orange"
         android:indeterminateTintMode="src_atop"

@@ -24,7 +24,7 @@ class FavoritesActivity : AppCompatActivity() {
     lateinit var vm: DbViewModel
     var favoritesList = ArrayList<Meme>()
     lateinit var adapter: ListAdapter
-    val limit = 10
+    val limit = 5
     var offset =0
     var search =false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,11 +50,11 @@ class FavoritesActivity : AppCompatActivity() {
             getFavorites(favoritesList)
             loadingPanel.visibility = View.GONE
             if (favoritesList.isEmpty()) {
-                emptyListText.text = "LIST EMPTY"
+                emptyListText.text = "No Memes? (͡๏̯͡๏)"
             } else {
                 emptyListText.text = ""
             }
-            if(favoritesList.size<10){
+            if(favoritesList.size<limit){
                 LoadMore.visibility = View.GONE
             }else{
                 LoadMore.visibility = View.VISIBLE
@@ -130,7 +130,7 @@ class FavoritesActivity : AppCompatActivity() {
                 vm.allFavorites.observe(this@FavoritesActivity) { favoritesList ->
                     getFavorites(favoritesList)
                     if (favoritesList.isEmpty()) {
-                        emptyListText.text = "LIST EMPTY"
+                        emptyListText.text = "No Memes? (͡๏̯͡๏)"
                     } else {
                         emptyListText.text = ""
                     }
