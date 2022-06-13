@@ -2,18 +2,23 @@ package com.example.memeoroid
 
 import android.content.DialogInterface
 import android.content.Intent
+import android.opengl.Visibility
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.memeoroid.roomdb.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_favorites.*
+import kotlinx.android.synthetic.main.activity_surfmemes.*
+import kotlinx.android.synthetic.main.meme_list_item.*
 
 class FavoritesActivity : AppCompatActivity() {
 
@@ -45,16 +50,12 @@ class FavoritesActivity : AppCompatActivity() {
             } else {
                 emptyListText.text = ""
             }
-            if(favoritesList.size < limit){
+            if(favoritesList.size<limit){
                 LoadMore.visibility = View.GONE
             }
             else{
                 LoadMore.visibility = View.VISIBLE
             }
-<<<<<<< HEAD
-=======
-
->>>>>>> 58c26a82b062aa21c680a408afc9ac8db9d4345f
             if(offset == 0 ){
                 Previous.visibility = View.GONE
             }else{
@@ -76,7 +77,7 @@ class FavoritesActivity : AppCompatActivity() {
                 viewHolder: RecyclerView.ViewHolder,
                 direction: Int
             ) {
-                    val alertDialogBuilder = androidx.appcompat.app.AlertDialog.Builder(viewHolder.itemView.context)
+                    val alertDialogBuilder = AlertDialog.Builder(viewHolder.itemView.context)
                     alertDialogBuilder.setTitle("Please confirm")
                     alertDialogBuilder.setMessage("Delete meme forever?")
                     alertDialogBuilder.setPositiveButton("Yes") {
@@ -133,7 +134,7 @@ class FavoritesActivity : AppCompatActivity() {
                     vm.search(searchText, limit, offset)
                     search =true
                 } else {
-                    vm.selectAllFavorites(limit,0)
+                    vm.selectAllFavorites(10,0)
                     search =  false
                 }
                 // necessary to update recycler view after search
@@ -145,11 +146,7 @@ class FavoritesActivity : AppCompatActivity() {
                     } else {
                         emptyListText.text = ""
                     }
-<<<<<<< HEAD
                     if(favoritesList.size < limit){
-=======
-                    if(favoritesList.size <limit){
->>>>>>> 58c26a82b062aa21c680a408afc9ac8db9d4345f
                         LoadMore.visibility = View.GONE
                     }else{
                         LoadMore.visibility = View.VISIBLE
@@ -165,7 +162,7 @@ class FavoritesActivity : AppCompatActivity() {
 
         LoadMore.setOnClickListener {
             //Log.d("offset&Limit", "$offset, $limit")
-            offset += limit
+            offset+=limit
             loadData()
         }
         Previous.setOnClickListener {
@@ -198,11 +195,7 @@ fun loadData(){
 
     vm.allFavorites.observe(this){
         getFavorites(it)
-<<<<<<< HEAD
         if(it.size < limit){
-=======
-        if(it.size <limit){
->>>>>>> 58c26a82b062aa21c680a408afc9ac8db9d4345f
             LoadMore.visibility = View.GONE
         }else{
             LoadMore.visibility = View.VISIBLE
@@ -214,7 +207,7 @@ fun loadData(){
             Previous.visibility = View.VISIBLE
         }
         if (it.isEmpty()) {
-            emptyListText.text = "No Memes? (͡๏̯͡๏)"
+            emptyListText.text = "LIST EMPTY"
         } else {
             emptyListText.text = ""
         }
