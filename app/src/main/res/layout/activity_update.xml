@@ -82,6 +82,7 @@
         android:hint="Top Text..."
         android:gravity="center"
         android:inputType="textPersonName"
+        android:gravity="center"
         android:maxLength="50"
         android:maxLines="2"
         android:padding="10dp"
