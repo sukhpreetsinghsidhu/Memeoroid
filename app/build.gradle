@@ -107,4 +107,5 @@ dependencies {
 
     // swipe button helper
     //implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.1'
+    implementation 'com.github.kevingermainbusiness:ItemDecorator:1.0.15'
 }

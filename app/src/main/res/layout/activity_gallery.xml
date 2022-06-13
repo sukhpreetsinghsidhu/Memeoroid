@@ -14,7 +14,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
-        android:text="Gallery"
+        android:text="@string/gallery"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
 
     <ScrollView
@@ -40,7 +40,7 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="prevous"
+                        android:text="@string/prevous"
                         android:id="@+id/PrevGallary"
                         android:layout_margin="10dp"
                         android:visibility="gone"
@@ -48,7 +48,7 @@
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Next"
+                        android:text="@string/next"
                         android:id="@+id/NextGallary"
                         android:layout_margin="10dp"
                         android:visibility="visible"
