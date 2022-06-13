@@ -56,6 +56,7 @@ class FavoritesActivity : AppCompatActivity() {
             else{
                 LoadMore.visibility = View.VISIBLE
             }
+
             if(offset == 0 ){
                 Previous.visibility = View.GONE
             }else{
@@ -146,7 +147,7 @@ class FavoritesActivity : AppCompatActivity() {
                     } else {
                         emptyListText.text = ""
                     }
-                    if(favoritesList.size < limit){
+                    if(favoritesList.size <limit){
                         LoadMore.visibility = View.GONE
                     }else{
                         LoadMore.visibility = View.VISIBLE
@@ -195,7 +196,7 @@ fun loadData(){
 
     vm.allFavorites.observe(this){
         getFavorites(it)
-        if(it.size < limit){
+        if(it.size <limit){
             LoadMore.visibility = View.GONE
         }else{
             LoadMore.visibility = View.VISIBLE
