@@ -30,6 +30,8 @@ Alternatively you can open from VCS in android studion and add the link `https:/
 - [Donhem Brown](https://github.com/DonhemABrown)
 - [John Haberkorn](https://github.com/SourDoe)
 - [David Odhiambo](https://github.com/odhiambo123)
+- [Jinal Parmar](https://github.com/jinalparmar45)
+- [Sukhpreet Singh Sidhu](https://github.com/sukhpreetsinghsidhu)
 
 
 
