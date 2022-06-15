@@ -2,13 +2,12 @@
 
 ## Technologies Used
 
-- RxKotlin
 - Clean Architecture
 - XML
 - Mockito
 - JUnit
 - Retrofit2
-- Voley
+- Volley
 - Crashlytics
 
 ## Improvements to be done:
@@ -25,9 +24,9 @@
 
 Alternatively you can open from VCS in android studion and add the link `https://github.com/jshev/RevProject2.git`
 
-## Contributers
+## Contributors
 
-- [Julie](https://github.com/jshev)
+- [Julianna Shevchenko](https://github.com/jshev)
 - [Donhem Brown](https://github.com/DonhemABrown)
 - [John Haberkorn](https://github.com/SourDoe)
 - [David Odhiambo](https://github.com/odhiambo123)
