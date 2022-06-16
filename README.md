@@ -1,6 +1,6 @@
 Memeoroid
 
-Is a meme sharing app. Allows users to surf meme generated online from reddit and also gives the ability to generate new memes and save them as well as same edit the saved memes.
+Is a meme sharing app. Allows users to surf meme generated online from reddit and also gives the ability to generate new memes and save them as well as edit the saved memes.
 
 <img width="652" alt="Screen Shot 2022-06-16 at 6 00 00 PM" src="https://user-images.githubusercontent.com/22013034/174179720-7ce0be1d-6d4a-4ab2-ac2f-976d75a3ebde.png">
 
